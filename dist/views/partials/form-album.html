@@ -1,0 +1,67 @@
+<md-dialog class="form-dialog form-album">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{album.id ? 'Update Album' : 'New Album'}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+                <md-icon aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content" layout="column" layout-gt-xs="row">
+            <form name="albumInfo" flex layout="column">
+                <error-block messages="errorMsgs"></error-block>
+
+                <md-input-container flex="100">
+                    <label>Name</label>
+                    <input type="text" ng-model="album.name"/>
+                </md-input-container>
+                
+                <md-input-container flex="100">
+                    <label>Public</label>
+			        <md-select ng-model="album.is_public">
+			            <md-option value="0">Private</md-option>
+			            <md-option value="1">Public</md-option>
+			        </md-select>
+                </md-input-container>
+                
+               	<md-input-container flex="50" flex-xs="100">
+			    	<label>Keywords</label>
+			    	<input type="text" ng-model="album.keywords"/>
+			    </md-input-container>
+
+                <md-input-container flex="100">
+                    <label>Description</label>
+                    <textarea ng-model="album.description" cols="30" rows="10"></textarea>
+                </md-input-container>
+
+                <md-input-container flex="50">
+                    <p>Select album image</p>
+                    <div class="upload-selector" ngf-select ng-model="album.thumb_img" name="thumb_img"
+                         ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB">
+                        <img ngf-thumbnail="album.thumb_img" class="thumb">
+                        <img src="" ng-hide="album.thumb_img" class="thumb">
+                        <md-progress-linear md-mode="determinate" value="{{album.progress}}"></md-progress-linear>
+                    </div>
+                </md-input-container>
+                
+                <md-input-container flex="50">
+                    <p>Select album feature image</p>
+                    <div class="upload-selector" ngf-select ng-model="album.feature_img" name="feature_img"
+                         ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB">
+                        <img ngf-thumbnail="album.feature_img" class="thumb">
+                        <img src="" ng-hide="album.feature_img" class="thumb">
+                        <md-progress-linear md-mode="determinate" value="{{album.progress}}"></md-progress-linear>
+                    </div>
+                </md-input-container>
+
+                <div class="actions" layout="row">
+                    <md-button class="md-raised md-primary" ng-click="submitAlbum(album.id)">Submit</md-button>
+                    <span flex></span>
+                    <md-button class="md-raised md-warn" ng-click="deleteAlbum(album.id)" ng-show="album.id">Delete</md-button>
+                </div>
+            </form>
+        </div>
+    </md-dialog-content>
+</md-dialog>

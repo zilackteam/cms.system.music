@@ -1,0 +1,47 @@
+<md-dialog class="form-dialog form-photo">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{ !photo.id ? "New Photo" : "Update Photo"}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+                <md-icon aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <form action="createAlbum" layout="column" layout-gt-xs="row" layout-wrap>
+
+                <error-block flex="100" messages="errorMsgs"></error-block>
+
+                <md-input-container flex="100">
+                    <p>Select feature image (500x500 or bigger)</p>
+                    <div class="upload-selector" ngf-select="uploadPhoto($file)" ng-model="photo.file_path" name="file_path"
+                         ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB"
+                            >
+                        <img ngf-thumbnail="photo.file_path" class="thumb">
+                        <img ng-src="{{photo.file_path}}" ng-hide="photo.file_path" class="thumb">
+                        <img ng-src="{{photo.thumb_path}}" ng-hide="1" class="thumb">
+                        <md-progress-linear md-mode="determinate" value="{{progress}}" ng-show="progress"></md-progress-linear>
+                        <span ng-show="progress == 100">Uploaded</span>
+                    </div>
+
+                    <!--<div class="upload-actions" layout="row">
+                        <md-button class="md-raised md-warn" ng-click="clearFile('thumb_img')" ng-show="song.thumb_img && !song.thumb_img.uploaded" style="margin-right:5px;">Remove</md-button>
+                    </div>-->
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <label>Caption</label>
+                    <textarea ng-model="photo.caption" class="md-input"></textarea>
+                </md-input-container>
+            </form>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button class="md-raised md-warn" ng-click="deletePhoto(photo)" ng-show="photo.id">Delete</md-button>
+        <span flex></span>
+        <md-button class="md-raised md-primary" ng-click="submitPhoto(photo)">Submit</md-button>
+    </md-dialog-actions>
+</md-dialog>

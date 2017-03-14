@@ -1,0 +1,56 @@
+<p><a ui-sref="user">Back to Users</a></p>
+
+<div layout="column" layout-gt-xs="row">
+    <form name="updateUser" flex layout="row" layout-wrap>
+        <h2 class="sub-heading">Update Information</h2>
+        <error-block messages="errorMsgs"></error-block>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Email</label>
+            <input type="email" ng-model="user.email"/>
+        </md-input-container>
+        <md-input-container flex="50" flex-xs="100">
+            <label>Password</label>
+            <input type="password" ng-model="user.password"/>
+        </md-input-container>
+        <md-input-container flex="50" flex-xs="100">
+            <label>Name</label>
+            <input type="text" ng-model="user.name"/>
+        </md-input-container>
+        <md-input-container flex="50" flex-xs="100">
+            <label>DOB</label>
+            <input type="text" pick-a-date="user.dob"/>
+        </md-input-container>
+        <md-input-container flex="50" flex-xs="100" ng-show="isMod">
+            <label>Singer</label>
+            <md-select ng-model="user.singer" multiple>
+            	<md-option ng-repeat="singer in singers" value="{{singer.id}}">{{singer.name}}</md-option>
+		    </md-select>
+        </md-input-container>
+        
+        
+
+        <div flex="100" class="align-center actions">
+            <md-button class="md-raised md-primary" ng-click="doUpdate()">
+                Submit
+            </md-button>
+        </div>
+    </form>
+    <form name="updateAvatar" flex flex-offset-gt-xs="5" class="upload-avatar">
+        <h2 class="sub-heading">Avatar</h2>
+
+        <p>Select your avatar</p>
+        <div class="upload-selector" ngf-select ng-model="avatar" name="avatar"
+             ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB"
+        >
+            <img ngf-thumbnail="avatar" class="thumb">
+            <img src="{{user.avatar}}" ng-hide="avatar" class="thumb">
+        </div>
+        <md-progress-linear md-mode="determinate" value="{{avatar.progress}}"></md-progress-linear>
+
+        <div class="upload-actions" layout="row">
+            <md-button class="md-raised md-warn" ng-click="clearUpload()" ng-show="avatar && !avatar.uploaded" style="margin-right:5px;">Remove</md-button>
+            <md-button class="md-raised md-primary" ng-click="uploadAvatar(avatar)" ng-disabled="!avatar || avatar.uploaded">Upload</md-button>
+        </div>
+    </form>
+</div>

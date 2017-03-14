@@ -1,0 +1,22 @@
+<md-content class="cms-login">
+    <p class="form-intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad adipisci alias aspernatur</p>
+    <form name="Login">
+        <div layout="column">
+            <ul class="error-msg" ng-show="errorMsgs.length">
+                <li ng-repeat="error in errorMsgs">{{error}}</li>
+            </ul>
+            <md-input-container>
+                <label>Email</label>
+                <input type="email" ng-model="user.email">
+            </md-input-container>
+            <md-input-container>
+                <label>Password</label>
+                <input type="password" ng-model="user.password">
+            </md-input-container>
+        </div>
+        <div class="form-actions layout-column">
+            <md-button class="md-raised md-primary md-submit" type="submit" ng-click="doLogin()">Sign in</md-button>
+            <p class="link-suggest">Forgot your password ? <a ui-sref="forgot">Click here</a></p>
+        </div>
+    </form>
+</md-content>

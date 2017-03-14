@@ -1,0 +1,113 @@
+<div class="page-actions" layout="row" flex="100">
+    <a ui-sref="singer-song({singerId:$state.params.singerId})">Back to Songs</a>
+    <span flex></span>
+    <md-button class="md-raised md-warn" ng-click="deleteThis()">Delete</md-button>
+</div>
+
+
+<form name="UpdateSong">
+    <md-content layout="row" layout-wrap>
+        <error-block flex="100" messages="errorMsgs"></error-block>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Name</label>
+            <input type="text" ng-model="song.name"/>
+        </md-input-container>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Album</label>
+            <md-select ng-model="song.album_id">
+                <md-option ng-repeat="album in albums" value="{{album.id}}">
+                    {{album.name}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Performer</label>
+            <input type="text" ng-model="song.performer"/>
+        </md-input-container>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Author</label>
+            <input type="text" ng-model="song.author"/>
+        </md-input-container>
+        
+        <md-input-container flex="50" flex-xs="100">
+	    	<label>Public</label>
+	        <md-select ng-model="song.is_public">
+	            <md-option value="0">Private</md-option>
+	            <md-option value="1">Public</md-option>
+	        </md-select>
+	    </md-input-container>
+	    
+    	<md-input-container flex="50" flex-xs="100">
+	    	<label>Keywords</label>
+	    	<input type="text" ng-model="song.keywords"/>
+	    </md-input-container>
+
+        <md-input-container flex="100">
+            <label>Lyrics</label>
+            <textarea ng-model="song.lyrics" cols="30" rows="10"></textarea>
+        </md-input-container>
+
+        <md-input-container flex="100">
+            <label>Description</label>
+            <textarea ng-model="song.description" cols="30" rows="10"></textarea>
+        </md-input-container>
+
+        <md-input-container flex="100">
+            <label>Video URL</label>
+            <input type="text" ng-model="song.video_url">
+        </md-input-container>
+
+        <md-input-container flex="100">
+            <p>Select song image</p>
+            <div class="upload-selector" ngf-select ng-model="song.thumb_img" name="thumb_img"
+                 ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB" ngf-resize="{ratio: 1:1, centerCrop: true}"
+                >
+                <img ngf-thumbnail="song.thumb_img" class="thumb">
+                <img src="{{song.thumb_img}}" ng-hide="song.thumb_img" class="thumb">
+            </div>
+
+            <!--<div class="upload-actions" layout="row">
+                <md-button class="md-raised md-warn" ng-click="clearFile('thumb_img')" ng-show="song.thumb_img && !song.thumb_img.uploaded" style="margin-right:5px;">Remove</md-button>
+            </div>-->
+        </md-input-container>
+
+        <md-input-container flex="100">
+            <p>Song Files</p>
+            <table class="song-files">
+                <tr>
+                    <td class="format">128Kbs</td>
+                    <td class="file-sample"><audio controls ngf-src="song.file128" ng-show="song.file128"></audio></td>
+                    <td class="actions">
+                        <md-button class="md-raised md-primary" ngf-select ng-model="song.file128" name="file128" ngf-accept="'audio/*'">Select file</md-button>
+                        <!--<md-button class="md-raised md-warn" ng-click="clearFile('file128')" ng-show="song.file128 && !song.file128.uploaded" style="margin-right:5px;">Remove</md-button>-->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="format">320Kbs</td>
+                    <td class="file-sample"><audio controls ngf-src="song.file320" ng-show="song.file320"></audio></td>
+                    <td class="actions">
+                        <md-button class="md-raised md-primary" ngf-select ng-model="song.file320" name="file320" ngf-accept="'audio/*'">Select file</md-button>
+                        <!--<md-button class="md-raised md-warn" ng-click="clearFile('file320')" ng-show="song.file320 && !song.file320.uploaded" style="margin-right:5px;">Remove</md-button>-->
+                    </td>
+                </tr>
+                <tr>
+                    <td class="format">Lossless</td>
+                    <td class="file-sample"><audio controls ngf-src="song.file_lossless" ng-show="!song.file_lossless"></audio></td>
+                    <td class="actions">
+                        <md-button class="md-raised md-primary" ngf-select ng-model="song.file_lossless" name="file_lossless" ngf-accept="'audio/*'">Select file</md-button>
+                        <!--<md-button class="md-raised md-warn" ng-click="clearFile('file_lossless')" ng-show="song.file_lossless && !song.file_lossless.uploaded" style="margin-right:5px;">Remove</md-button>-->
+                    </td>
+                </tr>
+            </table>
+        </md-input-container>
+
+        <md-input-container flex="100" class="actions">
+            <md-button class="md-raised md-primary" ng-click="doUpdate()">Submit</md-button>
+            <md-progress-linear md-mode="determinate" value="{{progress}}" ng-show="progress"></md-progress-linear>
+        </md-input-container>
+    </md-content>
+</form>

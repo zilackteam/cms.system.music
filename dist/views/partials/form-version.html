@@ -1,0 +1,47 @@
+<md-dialog class="form-dialog form-show">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{ !version.id ? "New Version" : "Update Version"}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+                <md-icon aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <form action="createVersion" layout="column" layout-gt-xs="row" layout-wrap>
+
+                <error-block flex="100" messages="errorMsgs"></error-block>
+
+				<md-input-container flex>
+                    <label>Type</label>
+			        <md-select ng-model="version.type">
+			            <md-option value="1">iOS</md-option>
+			            <md-option value="2">Android</md-option>
+			        </md-select>
+                </md-input-container>
+				
+                <md-input-container flex="100">
+                    <label>Version</label>
+                    <input type="text" ng-model="version.version"/>
+                </md-input-container>
+
+				<md-input-container flex>
+                    <label>Optional</label>
+			        <md-select ng-model="version.option">
+			            <md-option value="0">Optional</md-option>
+			            <md-option value="1">Require</md-option>
+			        </md-select>
+                </md-input-container>
+                
+            </form>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button class="md-raised md-warn" ng-click="deleteVersion(version)" ng-show="version.id">Delete</md-button>
+        <span flex></span>
+        <md-button class="md-raised md-primary" ng-click="submitVersion(version)">Submit</md-button>
+    </md-dialog-actions>
+</md-dialog>

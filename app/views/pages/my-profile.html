@@ -1,0 +1,42 @@
+<h1>Hi Me!</h1>
+<div layout="column" layout-gt-xs="row">
+    <section flex>
+        <form ng-submit="changePassword(currentUser)" layout="column">
+            <h2 class="md-title">Change password</h2>
+            <error-block messages="errorMsgsPassword"></error-block>
+            <md-input-container flex>
+                <label>Current Password</label>
+                <input type="password" ng-model="currentUser.current_password"/>
+            </md-input-container>
+            <md-input-container flex>
+                <label>New Password</label>
+                <input type="password" ng-model="currentUser.new_password"/>
+            </md-input-container>
+            <md-input-container flex>
+                <label>New Password Confirmation</label>
+                <input type="password" ng-model="currentUser.new_password_confirmation"/>
+            </md-input-container>
+            <div class="align-center">
+                <md-button class="md-raised md-primary" type="submit">Change password</md-button>
+            </div>
+        </form>
+    </section>
+    <section flex flex-offset-gt-xs="5">
+        <form  layout="column" ng-submit="updateProfile(currentUser)">
+            <h2 class="md-title">Update information</h2>
+            <error-block messages="errorMsgsProfile"></error-block>
+            <md-input-container flex>
+                <label>Email</label>
+                <input type="email" ng-model="currentUser.email" />
+            </md-input-container>
+            <md-input-container flex>
+                <label>Name</label>
+                <input type="text" ng-model="currentUser.name" />
+            </md-input-container>
+            <div class="align-center">
+                <md-button class="md-raised md-primary" type="submit">Update my info</md-button>
+            </div>
+        </form>
+    </section>
+
+</div>

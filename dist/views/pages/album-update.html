@@ -1,0 +1,24 @@
+<p><a ui-sref="singer-album({singerId:$state.params.singerId})">Back to Albums</a></p>
+
+<form action="updateAlbum">
+    <div layout="column" layout-gt-xs="row">
+        <div flex="100" flex-gt-xs="50" layout="column">
+            <md-input-container flex>
+                <label>Name</label>
+                <input type="text"/>
+            </md-input-container>
+
+            <md-input-container flex>
+                <label>Description</label>
+                <textarea ng-model="a" cols="30" rows="10"></textarea>
+            </md-input-container>
+
+            <div class="actions align-center">
+                <md-button class="md-raised md-primary">Submit</md-button>
+            </div>
+        </div>
+        <div flex="100" flex-gt-xs="50" layout="column">
+            upload image
+        </div>
+    </div>
+</form>

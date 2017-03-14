@@ -1,0 +1,27 @@
+<md-dialog class="form-dialog form-post">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Manage Post</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+                <md-icon aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <p>{{showedPost.content}}</p>
+            <hr>
+            <ul class="">
+                <li><p>Likes: {{showedPost.likes_count.total}}</p></li>
+                <li><p>Comments: {{showedPost.comments_count.total}}</p></li>
+            </ul>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button class="md-raised md-warn" ng-click="deletePost(showedPost)" ng-show="showedPost.id">Delete</md-button>
+        <!--<span flex></span>-->
+        <!--<md-button class="md-raised md-primary" ng-click="submitShow(showedPost)">Submit</md-button>-->
+    </md-dialog-actions>
+</md-dialog>

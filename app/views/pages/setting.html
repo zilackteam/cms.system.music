@@ -1,0 +1,15 @@
+<h1>Manage Settings</h1>
+
+<form name="ManageSettings" layout="row" layout-wrap>
+  <error-block flex="100" messages="errorMsgs"></error-block>
+
+  <md-input-container flex="100">
+    <label>Filter Strings</label>
+    <textarea ng-model="setting.filter" md-maxlength="150" rows="10" md-select-on-focus></textarea>
+  </md-input-container>
+
+  <md-input-container flex="100" class="align-center">
+    <md-button class="md-raised md-primary" ng-click="updateSetting()">Submit</md-button>
+  </md-input-container>
+
+</form>

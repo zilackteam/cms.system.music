@@ -1,0 +1,50 @@
+<md-button class="md-raised md-primary" ng-click="openDialog($event)">
+    New Album
+</md-button>
+
+<br>
+<md-input-container flex="100" flex-gt-xs="50">
+    <label>Search by name</label>
+    <input type="text" ng-model="search.name"">
+</md-input-container>
+
+<p class="align-center" ng-hide="albums.length">No albums</p>
+
+<md-table-container ng-show="albums.length">
+    <table md-table>
+        <thead md-head md-order="query.order">
+            <tr md-row>
+                <th md-column md-order-by="name">Name</th>
+                <th md-column md-order-by="thumb_img">Thumbnail</th>
+                <th md-column md-order-by="is_feature">Feature</th>
+                <th md-column md-order-by="created_at">Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row ng-repeat="album in result = albums | filter:search:name | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit" class="clickable"
+            >
+                <td md-cell ng-click="openDialog($event, album)">{{ album.name }}</td>
+                <td md-cell>
+                	<md-icon ng-show="album.thumb_img">done</md-icon>
+               	</td>
+                <td md-cell>
+                	<input type="checkbox" ng-model="album.is_feature" ng-true-value="1" ng-false-value="0" ng-checked="album.is_feature == 1" 
+                		aria-label="checkbox" ng-click="featureAlbum(album)">
+                </td>
+                <td md-cell>{{ album.created_at }}</td>
+                <td md-cell>
+                    <md-button
+                        class="md-icon-button"
+                        ng-click="openDialog($event, album)"
+                        stop-event="click"
+                    >
+                        <md-icon>edit</md-icon>
+                    </md-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>
+
+<md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{result.length}}" ng-show="albums.length"></md-table-pagination>

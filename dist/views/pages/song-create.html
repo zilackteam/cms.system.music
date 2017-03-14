@@ -1,0 +1,62 @@
+<p><a ui-sref="singer-song({singerId:$state.params.singerId})">Back to Songs</a></p>
+
+<form name="CreateSong" layout="row" layout-wrap enctype="multipart/form-data">
+    <error-block flex="100" messages="errorMsgs"></error-block>
+
+    <md-input-container flex="50" flex-xs="100">
+        <label>Name</label>
+        <input type="text" ng-model="song.name"/>
+    </md-input-container>
+
+    <md-input-container flex="50" flex-xs="100">
+        <label>Album</label>
+        <md-select ng-model="song.album_id">
+            <md-option ng-repeat="album in albums" value="{{album.id}}">
+                {{album.name}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+
+    <md-input-container flex="50" flex-xs="100">
+        <label>Performer</label>
+        <input type="text" ng-model="song.performer"/>
+    </md-input-container>
+
+    <md-input-container flex="50" flex-xs="100">
+        <label>Author</label>
+        <input type="text" ng-model="song.author"/>
+    </md-input-container>
+    
+    <md-input-container flex="50" flex-xs="100">
+    	<label>Public</label>
+        <md-select ng-model="song.is_public">
+            <md-option value="0">Private</md-option>
+            <md-option value="1">Public</md-option>
+        </md-select>
+    </md-input-container>
+    
+	<md-input-container flex="50" flex-xs="100">
+    	<label>Keywords</label>
+    	<input type="text" ng-model="song.keywords"/>
+    </md-input-container>
+
+    <md-input-container flex="100">
+        <label>Lyrics</label>
+        <textarea ng-model="song.lyrics" cols="30" rows="10"></textarea>
+    </md-input-container>
+
+    <md-input-container flex="100">
+        <label>Description</label>
+        <textarea ng-model="song.description" cols="30" rows="10"></textarea>
+    </md-input-container>
+
+    <md-input-container flex="100">
+        <label>Video URL</label>
+        <input type="url" ng-model="song.video_url"/>
+    </md-input-container>
+
+    <md-input-container flex="100" class="align-center">
+        <md-button class="md-raised md-primary" ng-click="createSong()">Submit</md-button>
+    </md-input-container>
+    </md-content>
+</form>

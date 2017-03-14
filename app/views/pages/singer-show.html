@@ -1,0 +1,35 @@
+<p>
+<md-button class="md-raised md-primary" ng-click="openDialog($event)">
+    New Show
+</md-button>
+</p>
+
+<md-table-container>
+    <table md-table>
+        <thead md-head md-order="query.order">
+            <tr md-row>
+                <th md-column md-order-by="name">Name</th>
+                <th md-column md-order-by="address">Address</th>
+                <th md-column md-order-by="on_datetime">Time</th>
+                <th md-column>Actions</th>
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row ng-repeat="show in result = shows | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit"
+                class="clickable"
+                ng-click="openDialog($event, show)"
+            >
+                <td md-cell>{{show.name}}</td>
+                <td md-cell>{{show.address}}</td>
+                <td md-cell>{{show.on_datetime | amDateFormat: 'DD-MM-YYYY HH:mm'}}</td>
+                <td md-cell class="actions align-center">
+                    <md-button class="md-icon-button" ng-click="openDialog($event, show)" stop-event="click">
+                        <md-icon>edit</md-icon>
+                    </md-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>
+
+<md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{result.length}}"></md-table-pagination>

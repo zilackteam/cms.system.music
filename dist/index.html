@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app="Veo">
+    <head>
+        <meta charset="utf-8">
+        <title>Veo CMS</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!--<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/images/favicon.ico" type="image/x-icon">-->
+
+        <link rel="stylesheet" href="styles/vendor.css">
+
+        <link rel="stylesheet" href="styles/main.css"/>
+    </head>
+    <body ng-controller="AppCtrl" ng-cloak class="layout-row {{currentPage.class}}">
+        <!--[if lte IE 8]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+            <md-sidenav layout="column" md-component-id="menu-left" md-is-locked-open="$mdMedia('gt-sm')" ng-include="'views/partials/sidebar.html'">
+
+            </md-sidenav>
+
+            <div flex layout="column" class="content-container">
+
+                <md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
+                    <div class="md-toolbar-tools">
+                        <md-button class="md-icon-button md-ink-ripple toggle-menu-button" ng-click="toggleMenu()" hide-gt-sm>
+                            <md-icon>menu</md-icon>
+                        </md-button>
+                        <div layout="row" flex class="fill-height layout-row">
+                            <h2 class="md-toolbar-item md-breadcrumb md-headline">
+                                <span class="md-breadcrumb-page ng-binding">{{currentPage.name}}</span>
+                            </h2>
+                            <span flex></span>
+
+                            <md-menu>
+                                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                    <md-icon md-menu-origin>face</md-icon>
+                                </md-button>
+                                <md-menu-content width="4">
+                                    <md-menu-item>
+                                        <md-button ng-click="changeState('my-profile')">My Profile</md-button>
+                                    </md-menu-item>
+                                    <md-menu-divider></md-menu-divider>
+                                    <md-menu-item>
+                                        <md-button ng-click="logout()">Logout</md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </div>
+                    </div>
+                </md-toolbar>
+
+                <ui-view class="page-content">
+                </ui-view>
+            </div>
+
+        <script src="scripts/vendor.js"></script>
+
+        <script src="scripts/config.js"></script>
+        <script src="scripts/bootstrap.js"></script>
+        <script src="scripts/routes.js"></script>
+        <script src="scripts/directives/directive.js"></script>
+
+        <script src="scripts/services/rest.js"></script>
+        <script src="scripts/services/service.js"></script>
+        <script src="scripts/services/models/setting.js"></script>
+        <script src="scripts/services/models/user.js"></script>
+        <script src="scripts/services/models/album.js"></script>
+        <script src="scripts/services/models/song.js"></script>
+        <script src="scripts/services/models/video.js"></script>
+        <script src="scripts/services/models/show.js"></script>
+        <script src="scripts/services/models/news.js"></script>
+        <script src="scripts/services/models/photo.js"></script>
+        <script src="scripts/services/models/post.js"></script>
+        <script src="scripts/services/models/website.js"></script>
+        <script src="scripts/services/models/version.js"></script>
+
+        <script src="scripts/controllers/app.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/my-profile.js"></script>
+        <script src="scripts/controllers/setting.js"></script>
+        <script src="scripts/controllers/home.js"></script>
+        <script src="scripts/controllers/user.js"></script>
+        <script src="scripts/controllers/singer.js"></script>
+        <script src="scripts/controllers/singer-album.js"></script>
+        <script src="scripts/controllers/singer-song.js"></script>
+        <script src="scripts/controllers/singer-video.js"></script>
+        <script src="scripts/controllers/singer-show.js"></script>
+        <script src="scripts/controllers/singer-news.js"></script>
+        <script src="scripts/controllers/singer-photo.js"></script>
+        <script src="scripts/controllers/singer-wall.js"></script>
+        <script src="scripts/controllers/singer-website.js"></script>
+        <script src="scripts/controllers/singer-version.js"></script>
+        <script src="scripts/controllers/singer-single.js"></script>
+    </body>
+</html>

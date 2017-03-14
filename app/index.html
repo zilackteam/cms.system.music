@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html ng-app="Veo">
+    <head>
+        <meta charset="utf-8">
+        <title>Veo CMS</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!--<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/images/favicon.ico" type="image/x-icon">-->
+
+        <!-- build:css styles/vendor.css -->
+        <link rel="stylesheet" href="../bower_components/angular-material/angular-material.css"/>
+        <link rel="stylesheet" href="../bower_components/angular-material-data-table/dist/md-data-table.css"/>
+
+        <link rel="stylesheet" href="../bower_components/pickadate/lib/themes/classic.css"/>
+        <link rel="stylesheet" href="../bower_components/pickadate/lib/themes/classic.date.css"/>
+        <link rel="stylesheet" href="../bower_components/pickadate/lib/themes/classic.time.css"/>
+
+        <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/froala_editor.min.css" />
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/froala_style.min.css" />
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/plugins/char_counter.css">
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/plugins/code_view.css">
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/plugins/colors.css">
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/plugins/emoticons.css">
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/plugins/file.css">
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/plugins/fullscreen.css">
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/plugins/image.css">
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/plugins/image_manager.css">
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/plugins/line_breaker.css">
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/plugins/quick_insert.css">
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/plugins/table.css">
+        <link rel="stylesheet" href="../bower_components/froala-wysiwyg-editor/css/plugins/video.css">
+        <!-- endbuild -->
+
+        <link rel="stylesheet" href="styles/main.css"/>
+    </head>
+    <body ng-controller="AppCtrl" ng-cloak class="layout-row {{currentPage.class}}">
+        <!--[if lte IE 8]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+            <md-sidenav layout="column" md-component-id="menu-left" md-is-locked-open="$mdMedia('gt-sm')" ng-include="'views/partials/sidebar.html'">
+
+            </md-sidenav>
+
+            <div flex layout="column" class="content-container">
+
+                <md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
+                    <div class="md-toolbar-tools">
+                        <md-button class="md-icon-button md-ink-ripple toggle-menu-button" ng-click="toggleMenu()" hide-gt-sm>
+                            <md-icon>menu</md-icon>
+                        </md-button>
+                        <div layout="row" flex class="fill-height layout-row">
+                            <h2 class="md-toolbar-item md-breadcrumb md-headline">
+                                <span class="md-breadcrumb-page ng-binding">{{currentPage.name}}</span>
+                            </h2>
+                            <span flex></span>
+
+                            <md-menu>
+                                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                    <md-icon md-menu-origin>face</md-icon>
+                                </md-button>
+                                <md-menu-content width="4">
+                                    <md-menu-item>
+                                        <md-button ng-click="changeState('my-profile')">My Profile</md-button>
+                                    </md-menu-item>
+                                    <md-menu-divider></md-menu-divider>
+                                    <md-menu-item>
+                                        <md-button ng-click="logout()">Logout</md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </div>
+                    </div>
+                </md-toolbar>
+
+                <ui-view class="page-content">
+                </ui-view>
+            </div>
+
+        <!-- build:js scripts/vendor.js -->
+        <script src="../bower_components/jquery/dist/jquery.js"></script>
+
+        <script src="../bower_components/angular/angular.js"></script>
+        <script src="../bower_components/angular-resource/angular-resource.js"></script>
+
+        <script src="../bower_components/angular-route/angular-route.js"></script>
+        <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+        <script src="../bower_components/angular-jwt/dist/angular-jwt.js"></script>
+
+        <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="../bower_components/a0-angular-storage/dist/angular-storage.js"></script>
+
+        <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="../bower_components/angular-animate/angular-animate.js"></script>
+        <script src="../bower_components/angular-aria/angular-aria.js"></script>
+        <script src="../bower_components/angular-messages/angular-messages.js"></script>
+
+        <script src="../bower_components/angular-material/angular-material.js"></script>
+        <script src="../bower_components/fastclick/lib/fastclick.js"></script>
+        <script src="../bower_components/angular-material-data-table/dist/md-data-table.js"></script>
+        <script src="../bower_components/ng-file-upload/ng-file-upload.js"></script>
+        <script src="../bower_components/pickadate/lib/picker.js"></script>
+        <script src="../bower_components/pickadate/lib/picker.date.js"></script>
+        <script src="../bower_components/pickadate/lib/picker.time.js"></script>
+        <script src="../bower_components/ng-pickadate/ng-pickadate.js"></script>
+        <script src="../bower_components/moment/moment.js"></script>
+        <script src="../bower_components/angular-moment/angular-moment.js"></script>
+
+        <script src="../bower_components/froala-wysiwyg-editor/js/froala_editor.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/align.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/char_counter.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/code_beautifier.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/code_view.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/colors.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/emoticons.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/entities.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/file.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/font_family.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/font_size.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/fullscreen.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/image.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/image_manager.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/inline_style.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/line_breaker.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/link.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/lists.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/paragraph_format.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/paragraph_style.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/quote.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/save.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/table.min.js"></script>
+        <script src="../bower_components/froala-wysiwyg-editor/js/plugins/video.min.js"></script>
+
+        <script src="../bower_components/angular-froala/src/angular-froala.js"></script>
+        <script src="../bower_components/angular-froala/src/froala-sanitize.js"></script>
+        <script src="../bower_components/ng-img-crop/compile/unminified/ng-img-crop.js"></script>
+
+        <!-- endbuild -->
+
+        <script src="scripts/config.js"></script>
+        <script src="scripts/bootstrap.js"></script>
+        <script src="scripts/routes.js"></script>
+        <script src="scripts/directives/directive.js"></script>
+
+        <script src="scripts/services/rest.js"></script>
+        <script src="scripts/services/service.js"></script>
+        <script src="scripts/services/models/setting.js"></script>
+        <script src="scripts/services/models/user.js"></script>
+        <script src="scripts/services/models/album.js"></script>
+        <script src="scripts/services/models/song.js"></script>
+        <script src="scripts/services/models/video.js"></script>
+        <script src="scripts/services/models/show.js"></script>
+        <script src="scripts/services/models/news.js"></script>
+        <script src="scripts/services/models/photo.js"></script>
+        <script src="scripts/services/models/post.js"></script>
+        <script src="scripts/services/models/website.js"></script>
+        <script src="scripts/services/models/version.js"></script>
+
+        <script src="scripts/controllers/app.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/my-profile.js"></script>
+        <script src="scripts/controllers/setting.js"></script>
+        <script src="scripts/controllers/home.js"></script>
+        <script src="scripts/controllers/user.js"></script>
+        <script src="scripts/controllers/singer.js"></script>
+        <script src="scripts/controllers/singer-album.js"></script>
+        <script src="scripts/controllers/singer-song.js"></script>
+        <script src="scripts/controllers/singer-video.js"></script>
+        <script src="scripts/controllers/singer-show.js"></script>
+        <script src="scripts/controllers/singer-news.js"></script>
+        <script src="scripts/controllers/singer-photo.js"></script>
+        <script src="scripts/controllers/singer-wall.js"></script>
+        <script src="scripts/controllers/singer-website.js"></script>
+        <script src="scripts/controllers/singer-version.js"></script>
+        <script src="scripts/controllers/singer-single.js"></script>
+    </body>
+</html>

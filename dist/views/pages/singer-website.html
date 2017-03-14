@@ -1,0 +1,153 @@
+<div ng-show="allowCreate">
+  <md-button class="md-raised md-primary"
+             ng-click="websiteAction.setup()">
+    Setup Website
+  </md-button>
+</div>
+
+<div class="main-content" ng-hide="allowCreate">
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Biography">
+        <md-content class="md-padding">
+          <h1 class="md-display-1">Bio</h1>
+          <form name="websiteBio" layout="column" layout-wrap>
+
+            <error-block flex="100" messages="bioErrors"></error-block>
+
+            <md-input-container flex="100">
+              <label>Title</label>
+              <input type="text" ng-model="website.bio_title">
+            </md-input-container>
+            
+			<md-input-container flex="100">
+              <label>Singer Info</label>
+              <textarea ng-model="website.singer_info" cols="5" rows="5"></textarea>
+            </md-input-container>
+
+            <md-input-container flex="100">
+              <label>Content</label>
+              <textarea ng-model="website.bio_content" froala="froalaOptions" cols="30" rows="10"></textarea>
+            </md-input-container>
+            
+            <md-input-container flex="100">
+              <label>Facebook</label>
+              <input type="text" ng-model="website.facebook">
+            </md-input-container>
+            
+            <md-input-container flex="100">
+              <label>Twitter</label>
+              <input type="text" ng-model="website.twitter">
+            </md-input-container>
+            
+            <md-input-container flex="100">
+              <label>Instagram</label>
+              <input type="text" ng-model="website.instagram">
+            </md-input-container>
+
+            <div flex="100" class="align-center">
+              <md-button class="md-raised md-primary" ng-click="websiteAction.update('bio')">Submit</md-button>
+            </div>
+
+          </form>
+        </md-content>
+      </md-tab>
+      <md-tab label="Contact">
+        <md-content class="md-padding">
+          <h1 class="md-display-1">Contact</h1>
+          <form name="websiteBio" layout="column" layout-wrap>
+
+            <error-block flex="100" messages="contactErrors"></error-block>
+
+            <md-input-container flex="100">
+              <label>Title</label>
+              <input type="text" ng-model="website.contact_title">
+            </md-input-container>
+
+            <md-input-container flex="100">
+              <label>Content</label>
+              <textarea ng-model="website.contact_content" froala="froalaOptions" cols="30" rows="10"></textarea>
+            </md-input-container>
+
+            <div flex="100" class="align-center">
+              <md-button class="md-raised md-primary" ng-click="websiteAction.update('contact')">Submit</md-button>
+            </div>
+
+          </form>
+        </md-content>
+      </md-tab>
+      <md-tab label="App">
+        <md-content class="md-padding">
+          <h1 class="md-display-1">App</h1>
+          <form name="websiteBio" layout="column" layout-wrap>
+
+            <error-block flex="100" messages="appErrors"></error-block>
+
+            <md-input-container flex="100">
+              <label>Title</label>
+              <input type="text" ng-model="website.app_title">
+            </md-input-container>
+
+            <md-input-container flex="100">
+              <label>Content</label>
+              <textarea ng-model="website.app_content" froala="froalaOptions" cols="30" rows="10"></textarea>
+            </md-input-container>
+
+            <div flex="100" class="align-center">
+              <md-button class="md-raised md-primary" ng-click="websiteAction.update('app')">Submit</md-button>
+            </div>
+
+          </form>
+        </md-content>
+      </md-tab>
+      <md-tab label="Developer">
+        <md-content class="md-padding">
+          <h1 class="md-display-1">Developer</h1>
+          <form name="websiteBio" layout="column" layout-wrap>
+
+            <error-block flex="100" messages="devErrors"></error-block>
+
+            <md-input-container flex="100">
+              <label>Title</label>
+              <input type="text" ng-model="website.dev_title">
+            </md-input-container>
+
+            <md-input-container flex="100">
+              <label>Content</label>
+              <textarea ng-model="website.dev_content" froala="froalaOptions" cols="30" rows="10"></textarea>
+            </md-input-container>
+
+            <div flex="100" class="align-center">
+              <md-button class="md-raised md-primary" ng-click="websiteAction.update('dev')">Submit</md-button>
+            </div>
+
+          </form>
+        </md-content>
+      </md-tab>
+      <md-tab label="App Guide">
+        <md-content class="md-padding">
+          <h1 class="md-display-1">App Guide</h1>
+          <form name="websiteBio" layout="column" layout-wrap>
+
+            <error-block flex="100" messages="guideErrors"></error-block>
+
+            <md-input-container flex="100">
+              <label>Title</label>
+              <input type="text" ng-model="website.guide_title">
+            </md-input-container>
+
+            <md-input-container flex="100">
+              <label>Content</label>
+              <textarea ng-model="website.guide_content" froala="froalaOptions" cols="30" rows="10"></textarea>
+            </md-input-container>
+
+            <div flex="100" class="align-center">
+              <md-button class="md-raised md-primary" ng-click="websiteAction.update('guide')">Submit</md-button>
+            </div>
+
+          </form>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

@@ -1,0 +1,39 @@
+<p><a ui-sref="user">Back to Users</a></p>
+
+<form name="CreateUser">
+    <md-content layout="row" layout-wrap>
+        <error-block messages="errorMsgs"></error-block>
+
+        <md-input-container flex="100">
+            <md-select ng-model="user.role" placeholder="Role">
+                <md-option ng-value="'admin'">Admin</md-option>
+                <md-option ng-value="'mod'">Mod</md-option>
+                <md-option ng-value="'singer'">Singer</md-option>
+                <md-option ng-value="'fan'">Fan</md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Email</label>
+            <input type="email" ng-model="user.email"/>
+        </md-input-container>
+        <md-input-container flex="50" flex-xs="100">
+            <label>Password</label>
+            <input type="password" ng-model="user.password"/>
+        </md-input-container>
+        <md-input-container flex="50" flex-xs="100">
+            <label>Name</label>
+            <input type="text" ng-model="user.name"/>
+        </md-input-container>
+        <md-input-container flex="50" flex-xs="100">
+            <label>DOB</label>
+            <input type="text" pick-a-date="user.dob"/>
+        </md-input-container>
+
+        <div flex="100" class="actions">
+            <md-button class="md-raised md-primary" ng-click="createUser()">
+                Submit
+            </md-button>
+        </div>
+    </md-content>
+</form>

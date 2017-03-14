@@ -1,0 +1,64 @@
+
+<div class="page-actions" layout="row" flex="100">
+    <a ui-sref="singer-news({singerId:$state.params.singerId})">Back to News</a>
+    <span flex></span>
+    <md-button class="md-raised md-warn" ng-click="deleteThis()">Delete</md-button>
+</div>
+
+<form name="CreateNews" layout="row" layout-wrap enctype="multipart/form-data">
+    <error-block flex="100" messages="errorMsgs"></error-block>
+
+    <md-input-container flex="100">
+        <label>Title</label>
+        <input type="text" ng-model="news.title"/>
+    </md-input-container>
+
+    <md-input-container flex="100">
+        <label>Excerpt</label>
+        <textarea class="md-input" ng-model="news.excerpt" cols="30" rows="10"></textarea>
+    </md-input-container>
+
+    <md-input-container flex="100">
+        <p>Content</p>
+        <textarea froala="froalaOptions" ng-model="news.content"></textarea>
+    </md-input-container>
+    
+    <md-input-container flex="100">
+    	<div layout="row" layout-sm="column">
+	    	<div flex="50">
+				<img ngf-thumbnail="old_feature_img" width="100%">
+			</div>
+			<div flex="40" flex-offset="10">
+				<img ngf-thumbnail="old_thumb_feature_img" class="thumb">
+			</div>
+		</div>
+    </md-input-container>
+    
+    <md-input-container flex="100">
+		<p>Select feature image (500x500 or bigger)</p>
+		<div layout="row">
+			<input type="file" ngf-select="uploadFeature($file)" ng-model="news.feature_img" name="feature_img" accept="image/*" ngf-max-size="3MB" required
+		             ngf-model-invalid="errorFile">
+			<img ng-src="{{news.feature_img}}" ng-hide="1" class="thumb">
+		</div>
+		<br>
+		<div layout="row" layout-sm="column">
+			<div class="cropArea" flex="50">
+				<img-crop image="myImage" result-image="myCroppedImage" result-image-size="300" result-image-quality="1" ></img-crop>
+			</div>
+			<div flex="40" flex-offset="10">
+				<div>Cropped Image:</div>
+				<div><img ng-src="{{myCroppedImage}}" class="thumb" /></div>
+			</div>
+		</div>
+
+		<!--<div class="upload-actions" layout="row">
+		    <md-button class="md-raised md-warn" ng-click="clearFile('thumb_img')" ng-show="song.thumb_img && !song.thumb_img.uploaded" style="margin-right:5px;">Remove</md-button>
+		</div>-->
+	</md-input-container>
+
+    <md-input-container flex="100" class="align-center">
+        <md-button class="md-raised md-primary" ng-click="updateNews()">Submit</md-button>
+    </md-input-container>
+
+</form>

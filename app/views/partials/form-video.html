@@ -1,0 +1,90 @@
+<md-dialog class="form-dialog form-video">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{video.id ? 'Update Video' : 'New Video'}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+                <md-icon aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content" layout="column" layout-gt-xs="row" layout-wrap>
+            <form name="videoInfo" flex="75" layout="column" layout-gt-xs="row" layout-wrap>
+                <error-block messages="errorMsgs" flex="100"></error-block>
+
+                <md-input-container flex="50">
+                    <label>Name</label>
+                    <input type="text" ng-model="video.name"/>
+                </md-input-container>
+
+                <md-input-container flex="50">
+                    <label>Performer</label>
+                    <input type="text" ng-model="video.performer"/>
+                </md-input-container>
+                
+                <md-input-container flex="50">
+			    	<label>Category</label>
+			    	<md-select ng-model="video.category">
+			            <md-option value="1">MV Official</md-option>
+			            <md-option value="2">Nhạc Ảnh</md-option>
+			            <md-option value="3">Sự Kiện</md-option>
+			            <md-option value="4">Fan</md-option>
+			        </md-select>
+			    </md-input-container>
+			    
+			    
+				<md-input-container flex="50">
+			    	<label>Keywords</label>
+			    	<input type="text" ng-model="video.keywords"/>
+			    </md-input-container>
+
+                <md-input-container flex="100">
+                    <label>Publish time</label>
+                    <input type="text" pick-a-date="video.publish_time" >
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <label>URL</label>
+                    <input type="text" ng-model="video.video_url"/>
+                </md-input-container>
+
+                <md-input-container flex="50">
+                    <label>Related to song</label>
+                    <md-select ng-model="video.song_id">
+                        <md-option ng-repeat="song in songs" value="{{song.id}}">{{song.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container flex="50">
+                    <label>Related to album</label>
+                    <md-select ng-model="video.album_id">
+                        <md-option ng-repeat="album in albums" value="{{album.id}}">{{album.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <p>Select thumb image (500x500 or bigger)</p>
+                    <div class="upload-selector" ngf-select="uploadThumb($file)" ng-model="video.thumb_img" name="file_path"
+                         ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB"
+                    >
+                        <img ngf-thumbnail="video.thumb_img" class="thumb">
+                        <img ng-src="{{video.thumb_img}}" ng-hide="video.thumb_img" class="thumb">
+                        <md-progress-linear md-mode="determinate" value="{{progress}}" ng-show="progress"></md-progress-linear>
+                        <span ng-show="progress == 100">Uploaded</span>
+                    </div>
+
+                    <!--<div class="upload-actions" layout="row">
+                        <md-button class="md-raised md-warn" ng-click="clearFile('thumb_img')" ng-show="song.thumb_img && !song.thumb_img.uploaded" style="margin-right:5px;">Remove</md-button>
+                    </div>-->
+                </md-input-container>
+
+                <md-input-container flex="100" class="actions" layout="row">
+                    <md-button class="md-raised md-warn" ng-click="deleteVideo(video.id)" ng-show="video.id">Delete</md-button>
+                    <span flex></span>
+                    <md-button class="md-raised md-primary" ng-click="submitVideo(video.id)">Submit</md-button>
+                </md-input-container>
+            </form>
+        </div>
+    </md-dialog-content>
+</md-dialog>

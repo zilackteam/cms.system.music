@@ -1,0 +1,37 @@
+<md-button class="md-raised md-primary" ui-sref="user-create">New record</md-button>
+<div layout="column">
+    <md-input-container flex="85">
+        <label>Search</label>
+        <input type="text" ng-model="query.filter"/>
+    </md-input-container>
+</div>
+    <md-table-container>
+        <table md-table>
+            <thead md-head md-order="order">
+                <tr md-row>
+                    <th md-column md-order-by="role"><span>Role</span></th>
+                    <th md-column md-order-by="email"><span>Email</span></th>
+                    <th md-column md-order-by="name"><span>Name</span></th>
+                    <th md-column class="actions"><span>Actions</span></th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row ng-repeat="user in (result = (users | filter: {$ : query.filter}) | orderBy: order | limitTo: query.limit : (query.page - 1) * query.limit )">
+                    <td md-cell>{{user.role}}</td>
+                    <td md-cell>{{user.email}}</td>
+                    <td md-cell>{{user.name}}</td>
+                    <td md-cell class="actions">
+                        <md-button class="md-icon-button" ng-click="changeState('user-update', {userId: user.id})">
+                            <md-icon>edit</md-icon>
+                        </md-button>
+                        <md-button class="md-icon-button" ng-click="deleteUser(user)" ng-show="isAdmin">
+                            <md-icon>delete</md-icon>
+                        </md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+
+    <md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{result.length}}" md-page-select>
+    </md-table-pagination>

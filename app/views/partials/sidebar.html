@@ -1,0 +1,31 @@
+<!--<md-sidenav layout="column" md-component-id="menu-left" md-is-locked-open="$mdMedia('gt-md')" ng-include="'views/partials/sidebar.html'">-->
+<header>
+    <a ng-hide="singerInfo" ui-sref="/"><img ng-src="{{logo}}" alt=""/></a>
+    <a ng-show="singerInfo" ui-sref="user-update({userId: singerInfo.id})"><img ng-src="{{logo}}" alt=""/></a>
+</header>
+<md-content role="navigation">
+    <ul class="menu">
+        <li ng-show="singerInfo">
+            <h2 class="menu-heading md-subhead">Singer: {{singerInfo.name}}</h2>
+            <ul>
+                <li><a class="md-button" ui-sref="singer-album({singerId:singerInfo.id})">Albums</a></li>
+                <li><a class="md-button" ui-sref="singer-single({singerId:singerInfo.id})">Singles</a></li>
+                <li><a class="md-button" ui-sref="singer-song({singerId:singerInfo.id})">Songs</a></li>
+                <li><a class="md-button" ui-sref="singer-video({singerId:singerInfo.id})">Videos</a></li>
+                <li><a class="md-button" ui-sref="singer-show({singerId:singerInfo.id})">Shows</a></li>
+                <li><a class="md-button" ui-sref="singer-news({singerId:singerInfo.id})">News</a></li>
+                <li><a class="md-button" ui-sref="singer-photo({singerId:singerInfo.id})">Photos</a></li>
+                <li><a class="md-button" ui-sref="singer-wall({singerId:singerInfo.id})">Wall</a></li>
+                <li><a class="md-button" ui-sref="singer-version({singerId:singerInfo.id})">Version</a></li>
+            </ul>
+        </li>
+        <li>
+            <h2 class="menu-heading md-subhead">System</h2>
+            <ul>
+                <li><a class="md-button" ui-sref="user">Users</a></li>
+                <li><a class="md-button" ui-sref="/">Singers</a></li>
+                <li><a class="md-button" ui-sref="setting">Settings</a></li>
+            </ul>
+        </li>
+    </ul>
+</md-content>
