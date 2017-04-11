@@ -16,8 +16,8 @@ var app = angular.module('Veo', [
  * Constant configuration
  */
 app.constant('urls', {
-  BASE: 'http:/cms.thangveo.local/',
-  BASE_API: 'http://localhost/outsource-veo-api/'
+  BASE: 'http://localhost/cms.system.music/',
+  BASE_API: 'http://localhost/api.system.music/'
 });
 
 /**

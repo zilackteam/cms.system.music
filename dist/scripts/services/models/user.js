@@ -2,7 +2,7 @@ app.factory('User', function(RestService, urls, $http, Upload) {
     var rest = new RestService('user/');
 
     var login = function(credentials) {
-        return $http.post(urls.BASE_API + 'user/login', credentials)
+        return $http.post(urls.BASE_API + 'auth/manager', credentials)
             .then(function(response) {
                 return response.data;
             })
@@ -10,7 +10,7 @@ app.factory('User', function(RestService, urls, $http, Upload) {
 
     var getAuthenticatedUser = function(){
         return $http
-            .get(urls.BASE_API + 'user/authenticated')
+            .get(urls.BASE_API + 'auth/authenticated')
             .then(function(response) {
                 return response.data;
             });
@@ -25,7 +25,7 @@ app.factory('User', function(RestService, urls, $http, Upload) {
     };
 
     var refreshToken = function() {
-        return $http.post(urls.BASE_API + 'user/refresh-token', [])
+        return $http.post(urls.BASE_API + 'auth/refresh-token', [])
             .then(function(response) {
                 return response.data
             })
