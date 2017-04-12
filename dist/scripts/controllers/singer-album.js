@@ -6,7 +6,9 @@ app.controller('SingerAlbumCtrl', function($rootScope, $scope, $window, $timeout
     };
 
     $scope.singerId = $stateParams.singerId;
-    $scope.albums = Album.rest.getList({singer_id : $scope.singerId, with: 'song', cms: 1}).then(function(response) {
+    $scope.albums = [];
+
+    Album.rest.getList({content_id : $scope.singerId, includes: 'songs'}).then(function(response) {
         $scope.albums = response.data;
     });
     
@@ -38,20 +40,19 @@ app.controller('SingerAlbumCtrl', function($rootScope, $scope, $window, $timeout
     };
 
     $scope.submitAlbum = function(albumId) {
-
         if (albumId) {
             Album.rest.update({
                 id: $scope.album.id,
                 name: $scope.album.name,
                 description: $scope.album.description,
-                thumb_img: $scope.album.thumb_img,
-                feature_img: $scope.album.feature_img,
+                thumb_url: $scope.album.thumb_url,
+                feature_url: $scope.album.feature_url,
                 is_public: $scope.album.is_public,
                 keywords: $scope.album.keywords,
             }).then(function(response) {
                 alert('Album updated successfully!');
                 $scope.errorMsgs = [];
-                $scope.album.thumb_img = response.data.thumb_img;
+                $scope.album.thumb_url = response.data.thumb_url;
             }, function(responseError) {
                 $scope.errorMsgs = responseError.data.error;
             }, function(evt) {
@@ -59,11 +60,11 @@ app.controller('SingerAlbumCtrl', function($rootScope, $scope, $window, $timeout
             })
         } else {
             Album.rest.add({
-                singer_id: $scope.singerId,
+                content_id: $scope.singerId,
                 name: $scope.album.name,
                 description: $scope.album.description,
-                thumb_img: $scope.album.thumb_img,
-                feature_img: $scope.album.feature_img,
+                thumb_url: $scope.album.thumb_url,
+                feature_url: $scope.album.feature_url,
                 is_public: $scope.album.is_public,
                 keywords: $scope.album.keywords,
             }).then(function(response) {

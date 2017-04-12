@@ -38,20 +38,20 @@
 
                 <md-input-container flex="50">
                     <p>Select album image</p>
-                    <div class="upload-selector" ngf-select ng-model="album.thumb_img" name="thumb_img"
+                    <div class="upload-selector" ngf-select ng-model="album.thumb_url" name="thumb_url"
                          ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB">
-                        <img ngf-thumbnail="album.thumb_img" class="thumb">
-                        <img src="" ng-hide="album.thumb_img" class="thumb">
+                        <img ngf-thumbnail="album.thumb_url" class="thumb">
+                        <img src="" ng-hide="album.thumb_url" class="thumb">
                         <md-progress-linear md-mode="determinate" value="{{album.progress}}"></md-progress-linear>
                     </div>
                 </md-input-container>
                 
                 <md-input-container flex="50">
                     <p>Select album feature image</p>
-                    <div class="upload-selector" ngf-select ng-model="album.feature_img" name="feature_img"
+                    <div class="upload-selector" ngf-select ng-model="album.feature_url" name="feature_url"
                          ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB">
-                        <img ngf-thumbnail="album.feature_img" class="thumb">
-                        <img src="" ng-hide="album.feature_img" class="thumb">
+                        <img ngf-thumbnail="album.feature_url" class="thumb">
+                        <img src="" ng-hide="album.feature_url" class="thumb">
                         <md-progress-linear md-mode="determinate" value="{{album.progress}}"></md-progress-linear>
                     </div>
                 </md-input-container>
