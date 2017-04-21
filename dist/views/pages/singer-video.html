@@ -12,7 +12,6 @@
             <tr md-row>
                 <th md-column md-order-by="name">Name</th>
                 <th md-column md-order-by="video_url">Video URL</th>
-                <th md-column md-order-by="song.name">Song</th>
                 <th md-column md-order-by="category">Category</th>
                 <th md-column md-order-by="is_feature">Feature</th>
                 <th md-column md-order-by="created_at">Created</th>
@@ -25,7 +24,6 @@
             >
                 <td md-cell ng-click="openDialog($event, video)">{{ video.name }}</td>
                 <td md-cell>{{ video.video_url }}</td>
-                <td md-cell>{{ video.song.name }}</td>
                 <td md-cell>
                 	{{ categories[video.category] }}
                 </td>

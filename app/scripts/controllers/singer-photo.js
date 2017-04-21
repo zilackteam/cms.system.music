@@ -1,13 +1,13 @@
 app.controller('SingerPhotoCtrl', function($rootScope, $scope, $window, $timeout, $mdDialog, $location, $state, $stateParams, store, jwtHelper, User, Photo) {
     $rootScope.currentPage = {
         class: 'page-singer-photo',
-        name: 'Singer Photo ' + $stateParams.singerId
+        name: 'Singer Photo ' + $stateParams.contentId
     };
 
-    $scope.singerId = $stateParams.singerId;
+    $scope.contentId = $stateParams.contentId;
 
     $scope.photos = [];
-    Photo.rest.getList({singer_id: $scope.singerId})
+    Photo.rest.getList({content_id: $scope.contentId})
         .then(function(response) {
             $scope.photos = response.data;
         });
@@ -55,7 +55,7 @@ app.controller('SingerPhotoCtrl', function($rootScope, $scope, $window, $timeout
     	
         Photo.upload({
             file: file,
-            singer_id: $stateParams.singerId
+            content_id: $stateParams.contentId
         }).then(function (resp) {
             $scope.photo.file_path = resp.link;
         }, function (resp) {
@@ -67,11 +67,12 @@ app.controller('SingerPhotoCtrl', function($rootScope, $scope, $window, $timeout
 
     $scope.submitPhoto = function(photo) {
         if (photo.id) {
+            console.log(photo.id);
             //Update
         	if ($scope.myImage) {
-        		photo.thumb_path = $scope.myCroppedImage;
+        		photo.thumb_url = $scope.myCroppedImage;
         	} else {
-        		photo.thumb_path = '';
+        		photo.thumb_url = '';
         	}
         	
             Photo.rest.update(photo).then(function(response) {
@@ -85,9 +86,8 @@ app.controller('SingerPhotoCtrl', function($rootScope, $scope, $window, $timeout
 
         } else {
             //New
-
-            photo.singer_id = $scope.singerId;
-            photo.thumb_path = $scope.myCroppedImage;
+            photo.content_id = $scope.contentId;
+            photo.thumb_url = $scope.myCroppedImage;
             console.log(photo);
 
             Photo.rest.add(photo).then(function(response) {

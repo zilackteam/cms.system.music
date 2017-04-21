@@ -7,23 +7,13 @@ app.controller('SingerVideoCtrl', function($rootScope, $scope, $window, $timeout
         page: 1
     };
 
-    $scope.singerId = $stateParams.singerId;
+    $scope.contentId = $stateParams.contentId;
     
     $scope.categories = {1: 'MV Official', 2: 'Nhạc Ảnh', 3: 'Sự Kiện', 4: 'Fan'};
 
     $scope.videos = [];
-    Video.rest.getList({singer_id: $scope.singerId, with: 'song'}).then(function(response) {
+    Video.rest.getList({content_id: $scope.contentId}).then(function(response) {
         $scope.videos = response.data;
-    });
-
-    $scope.songs = [];
-    Song.rest.getList({singer_id: $scope.singerId}).then(function(response) {
-        $scope.songs = response.data;
-    });
-
-    $scope.albums = [];
-    Album.rest.getList({singer_id: $scope.singerId}).then(function(response) {
-        $scope.albums = response.data;
     });
 
     $scope.video = '';
@@ -56,7 +46,7 @@ app.controller('SingerVideoCtrl', function($rootScope, $scope, $window, $timeout
                 $scope.errorMsgs = responseError.data.error;
             })
         } else {
-            $scope.video.singer_id = $scope.singerId;
+            $scope.video.content_id = $scope.contentId;
             Video.rest.add($scope.video).then(function(response) {
                 //Inform user + clear error
                 alert('Video created successfully!');
@@ -87,9 +77,9 @@ app.controller('SingerVideoCtrl', function($rootScope, $scope, $window, $timeout
     	if (file) {
     		Video.upload({
                 file: file,
-                singer_id: $scope.singerId
+                content_id: $scope.contentId
             }).then(function (resp) {
-                $scope.video.thumb_img = resp;
+                $scope.video.thumb_url = resp;
             }, function (resp) {
                 alert('Unable to upload, please try again');
             }, function (evt) {

@@ -2,15 +2,15 @@ app.controller('SingerSongCtrl', function($rootScope, $scope, $window, $timeout,
                                           store, jwtHelper, User, Album, Song) {
     $rootScope.currentPage = {
         class: 'page-singer-song',
-        name: 'Singer Song ' + $stateParams.singerId
+        name: 'Singer Song ' + $stateParams.contentId
     };
 
-    if (!$stateParams.singerId) {
+    if (!$stateParams.contentId) {
         alert('Invalid request');
         $state.go('/');
     }
     
-    $scope.singerId = $stateParams.singerId;
+    $scope.contentId = $stateParams.contentId;
 
     $scope.query = {
         order: '',
@@ -19,33 +19,26 @@ app.controller('SingerSongCtrl', function($rootScope, $scope, $window, $timeout,
     };
 
     $scope.songs = [];
-    Song.rest.getList({singer_id: $scope.singerId, cms: 1})
+    Song.rest.getList({content_id: $scope.contentId, includes: 'albums'})
         .then(function(response) {
             $scope.songs = response.data;
 
-            Album.rest.getList({singer_id: $stateParams.singerId})
-                .then(function(response) {
-                    $scope.albums = response.data;
-                    angular.forEach($scope.songs, function(song) {
-
-                        angular.forEach($scope.albums, function(album) {
-                            if (song.album_id == album.id) {
-                                song.album_name = album.name;
-                            }
-                        });
-
-                        song.format_available = '';
-                        if (song.file128) {
-                            song.format_available += ' (128) '
-                        }
-                        if (song.file320) {
-                            song.format_available += ' (320) '
-                        }
-                        if (song.file_lossless) {
-                            song.format_available += ' (LL) '
-                        }
-                    });
+            angular.forEach($scope.songs, function(song) {
+                angular.forEach(song.albums, function(album) {
+                    song.album_name = album.name;
                 });
+
+                song.format_available = '';
+                if (song.file128) {
+                    song.format_available += ' (128) '
+                }
+                if (song.file320) {
+                    song.format_available += ' (320) '
+                }
+                if (song.file_lossless) {
+                    song.format_available += ' (LL) '
+                }
+            });
         });
     
     $scope.featureSong = function(song) {
@@ -65,22 +58,22 @@ app.controller('SongCreateCtrl', function($rootScope, $scope, $window, $timeout,
                                           store, jwtHelper, User, Album, Song) {
     $rootScope.currentPage = {
         class: 'page-create-song',
-        name: 'New Song For' + $stateParams.singerId
+        name: 'New Song For' + $stateParams.contentId
     };
 
-    Album.rest.getList({singer_id: $stateParams.singerId})
+    Album.rest.getList({content_id: $stateParams.contentId})
         .then(function(response) {
             $scope.albums = response.data;
         });
 
     $scope.song = {};
     $scope.createSong = function() {
-        $scope.song.singer_id = $stateParams.singerId;
+        $scope.song.content_id = $stateParams.contentId;
 
         Song.rest.add($scope.song).then(function(response) {
             alert('Song created! Redirect to update page to upload song file');
             $scope.errorMsgs = [];
-            $state.go('song-update', {singerId: $stateParams.singerId, songId: response.data.id});
+            $state.go('song-update', {contentId: $stateParams.contentId, songId: response.data.id});
         }, function(responseError) {
             $scope.errorMsgs = responseError.data.error;
         })
@@ -101,9 +94,15 @@ app.controller('SongUpdateCtrl', function($rootScope, $scope, $window, $timeout,
     Song.rest.get($scope.songId).then(function(response) {
         $scope.song = response.data;
 
-        if ($scope.song.singer_id != $stateParams.singerId) {
+        if ($scope.song.albums) {
+            angular.forEach($scope.song.albums, function(album) {
+                $scope.song.album_id = album.id;
+            });
+        }
+
+        if ($scope.song.content_id != $stateParams.contentId) {
             alert('Song not match with user!');
-            $state.go('singer-song', {singerId: $state.params.singerId});
+            $state.go('singer-song', {contentId: $state.params.contentId});
         }
 
         if (!$scope.song.thumb_img)
@@ -111,10 +110,10 @@ app.controller('SongUpdateCtrl', function($rootScope, $scope, $window, $timeout,
 
     }, function(responseError) {
         alert('Song not found!');
-        $state.go('singer-song', {singerId: $state.params.singerId});
+        $state.go('singer-song', {contentId: $state.params.contentId});
     });
 
-    Album.rest.getList({singer_id: $stateParams.singerId})
+    Album.rest.getList({content_id: $stateParams.contentId})
         .then(function(response) {
             $scope.albums = response.data;
         });
@@ -140,7 +139,7 @@ app.controller('SongUpdateCtrl', function($rootScope, $scope, $window, $timeout,
         if (confirm('Are you sure that you want to delete this song "' + $scope.song.name + '" ?')) {
             Song.rest.delete($scope.song.id).then(function(response) {
                 alert('Song deleted successfully!');
-                $state.go('singer-song', {singerId: $state.params.singerId});
+                $state.go('singer-song', {contentId: $state.params.contentId});
             }, function(responseError) {
                 alert('Unable to delete song!');
             })

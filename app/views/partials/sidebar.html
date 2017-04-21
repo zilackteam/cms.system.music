@@ -1,22 +1,22 @@
 <!--<md-sidenav layout="column" md-component-id="menu-left" md-is-locked-open="$mdMedia('gt-md')" ng-include="'views/partials/sidebar.html'">-->
 <header>
-    <a ng-hide="singerInfo" ui-sref="/"><img ng-src="{{logo}}" alt=""/></a>
-    <a ng-show="singerInfo" ui-sref="user-update({userId: singerInfo.id})"><img ng-src="{{logo}}" alt=""/></a>
+    <a ng-hide="appInfo" ui-sref="/"><img ng-src="{{logo}}" alt=""/></a>
+    <a ng-show="appInfo" ui-sref="/my-profile"><img ng-src="{{logo}}" alt=""/></a>
 </header>
 <md-content role="navigation">
     <ul class="menu">
-        <li ng-show="singerInfo">
+        <li ng-show="appInfo">
             <h2 class="menu-heading md-subhead">Singer: {{singerInfo.name}}</h2>
             <ul>
-                <li><a class="md-button" ui-sref="singer-album({singerId:singerInfo.id})">Albums</a></li>
-                <li><a class="md-button" ui-sref="singer-single({singerId:singerInfo.id})">Singles</a></li>
-                <li><a class="md-button" ui-sref="singer-song({singerId:singerInfo.id})">Songs</a></li>
-                <li><a class="md-button" ui-sref="singer-video({singerId:singerInfo.id})">Videos</a></li>
-                <li><a class="md-button" ui-sref="singer-show({singerId:singerInfo.id})">Shows</a></li>
-                <li><a class="md-button" ui-sref="singer-news({singerId:singerInfo.id})">News</a></li>
-                <li><a class="md-button" ui-sref="singer-photo({singerId:singerInfo.id})">Photos</a></li>
-                <li><a class="md-button" ui-sref="singer-wall({singerId:singerInfo.id})">Wall</a></li>
-                <li><a class="md-button" ui-sref="singer-version({singerId:singerInfo.id})">Version</a></li>
+                <li><a class="md-button" ui-sref="singer-album({contentId:appInfo.content_id})">Albums</a></li>
+                <li><a class="md-button" ui-sref="singer-single({contentId:appInfo.content_id})">Singles</a></li>
+                <li><a class="md-button" ui-sref="singer-song({contentId:appInfo.content_id})">Songs</a></li>
+                <li><a class="md-button" ui-sref="singer-video({contentId:appInfo.content_id})">Videos</a></li>
+                <li><a class="md-button" ui-sref="singer-show({contentId:appInfo.content_id})">Shows</a></li>
+                <li><a class="md-button" ui-sref="singer-news({contentId:appInfo.content_id})">News</a></li>
+                <li><a class="md-button" ui-sref="singer-photo({contentId:appInfo.content_id})">Photos</a></li>
+                <li><a class="md-button" ui-sref="singer-wall({contentId:appInfo.content_id})">Wall</a></li>
+                <li><a class="md-button" ui-sref="singer-version({contentId:appInfo.content_id})">Version</a></li>
             </ul>
         </li>
         <li>

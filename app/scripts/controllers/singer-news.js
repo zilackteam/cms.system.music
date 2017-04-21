@@ -1,7 +1,7 @@
 app.controller('SingerNewsCtrl', function($rootScope, $scope, $window, $timeout, $mdDialog, $location, $state, $stateParams, store, jwtHelper, urls, User, News) {
     $rootScope.currentPage = {
         class: 'page-singer-news',
-        name: 'Singer News ' + $stateParams.singerId
+        name: 'Singer News ' + $stateParams.contentId
     };
 
     $scope.query = {
@@ -11,7 +11,7 @@ app.controller('SingerNewsCtrl', function($rootScope, $scope, $window, $timeout,
     };
 
     $scope.newsList = [];
-    News.rest.getList({singer_id: $stateParams.singerId}).then(function(response) {
+    News.rest.getList({content_id: $stateParams.contentId}).then(function(response) {
         $scope.newsList = response.data;
     });
 });
@@ -19,10 +19,10 @@ app.controller('SingerNewsCtrl', function($rootScope, $scope, $window, $timeout,
 app.controller('NewsCreateCtrl', function($rootScope, $scope, $window, $timeout, $mdDialog, $location, $state, $stateParams, store, jwtHelper, urls, User, News, Upload) {
     $rootScope.currentPage = {
         class: 'page-news-create',
-        name: 'Create News ' + $stateParams.singerId
+        name: 'Create News ' + $stateParams.contentId
     };
 
-    if (!$stateParams.singerId) {
+    if (!$stateParams.contentId) {
         $state.go('/');
     }
 
@@ -30,7 +30,7 @@ app.controller('NewsCreateCtrl', function($rootScope, $scope, $window, $timeout,
         imageUploadURL:  urls.BASE_API + 'news/upload',
         imageUploadParams: {
             upload_type: 'image',
-            singer_id: $stateParams.singerId
+            content_id: $stateParams.contentId
         }
     };
 
@@ -54,11 +54,11 @@ app.controller('NewsCreateCtrl', function($rootScope, $scope, $window, $timeout,
         
         News.upload({
             file: file,
-            singer_id: $stateParams.singerId,
+            content_id: $stateParams.contentId,
             upload_type: 'image'
         }).then(function (resp) {
             console.log(resp);
-            $scope.news.feature_img = resp;
+            $scope.news.feature_url = resp;
         }, function (resp) {
             alert('Unable to upload, please try again');
         }, function (evt) {
@@ -67,12 +67,12 @@ app.controller('NewsCreateCtrl', function($rootScope, $scope, $window, $timeout,
     };
 
     $scope.createNews = function() {
-        $scope.news.singer_id = $stateParams.singerId;
-        $scope.news.thumb_feature_img = $scope.myCroppedImage;
+        $scope.news.content_id = $stateParams.contentId;
+        $scope.news.thumb_url = $scope.myCroppedImage;
         console.log($scope.news);
         News.rest.add($scope.news).then(function(response) {
             alert('News created successfully');
-            //$state.go('singer-news', {singerId: $stateParams.singerId});
+            //$state.go('singer-news', {contentId: $stateParams.contentId});
         }, function(responseError) {
             $scope.errorMsgs = responseError.data.error;
         })
@@ -82,10 +82,10 @@ app.controller('NewsCreateCtrl', function($rootScope, $scope, $window, $timeout,
 app.controller('NewsUpdateCtrl', function($rootScope, $scope, $window, $timeout, $mdDialog, $location, $state, $stateParams, store, jwtHelper, urls, User, News, Upload) {
     $rootScope.currentPage = {
         class: 'page-news-update',
-        name: 'Update News ' + $stateParams.singerId
+        name: 'Update News ' + $stateParams.contentId
     };
 
-    if (!$stateParams.singerId) {
+    if (!$stateParams.contentId) {
         $state.go('/');
     }
 
@@ -93,18 +93,18 @@ app.controller('NewsUpdateCtrl', function($rootScope, $scope, $window, $timeout,
         imageUploadURL:  urls.BASE_API + 'news/upload',
         imageUploadParams: {
             upload_type: 'image',
-            singer_id: $stateParams.singerId
+            content_id: $stateParams.contentId
         }
     };
 
     $scope.news = {};
     News.rest.get($stateParams.newsId).then(function(response) {
         $scope.news = response.data;
-        $scope.old_feature_img = $scope.news.feature_img;
-        $scope.old_thumb_feature_img = $scope.news.thumb_feature_img;
+        $scope.old_feature_url = $scope.news.feature_url;
+        $scope.old_thumb_url = $scope.news.thumb_url;
     }, function(responseError) {
         alert('Problem in getting news');
-        $state.go('singer-news', {singerId: $stateParams.singerId});
+        $state.go('singer-news', {contentId: $stateParams.contentId});
     });
     
     $scope.myImage = '';
@@ -124,11 +124,10 @@ app.controller('NewsUpdateCtrl', function($rootScope, $scope, $window, $timeout,
     	
         News.upload({
             file: file,
-            singer_id: $stateParams.singerId,
+            content_id: $stateParams.contentId,
             upload_type: 'image'
         }).then(function (resp) {
-            console.log(resp);
-            $scope.news.feature_img = resp;
+            $scope.news.feature_url = resp;
         }, function (resp) {
             alert('Unable to upload, please try again');
         }, function (evt) {
@@ -139,14 +138,14 @@ app.controller('NewsUpdateCtrl', function($rootScope, $scope, $window, $timeout,
     $scope.updateNews = function() {
     	//Update
     	if ($scope.myImage) {
-    		$scope.news.thumb_feature_img = $scope.myCroppedImage;
+    		$scope.news.thumb_url = $scope.myCroppedImage;
     	} else {
-    		$scope.news.thumb_feature_img = '';
+    		$scope.news.thumb_url = '';
     	}
     	
         News.rest.update($scope.news).then(function(response) {
             alert('News updated successfully');
-            $state.go('singer-news', {singerId: $stateParams.singerId});
+            $state.go('singer-news', {contentId: $stateParams.contentId});
         }, function(responseError) {
             $scope.errorMsgs = responseError.data.error;
         })
@@ -156,7 +155,7 @@ app.controller('NewsUpdateCtrl', function($rootScope, $scope, $window, $timeout,
         if (confirm('Are you sure that you want to delete this news ?')) {
             News.rest.delete($scope.news.id).then(function(response) {
                 alert('News deleted successfully!');
-                $state.go('singer-news', {singerId: $state.params.singerId});
+                $state.go('singer-news', {contentId: $state.params.contentId});
             }, function(responseError) {
                 alert('Unable to delete news!');
             })

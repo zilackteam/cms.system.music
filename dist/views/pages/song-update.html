@@ -1,5 +1,5 @@
 <div class="page-actions" layout="row" flex="100">
-    <a ui-sref="singer-song({singerId:$state.params.singerId})">Back to Songs</a>
+    <a ui-sref="singer-song({contentId:$state.params.contentId})">Back to Songs</a>
     <span flex></span>
     <md-button class="md-raised md-warn" ng-click="deleteThis()">Delete</md-button>
 </div>
@@ -57,17 +57,12 @@
         </md-input-container>
 
         <md-input-container flex="100">
-            <label>Video URL</label>
-            <input type="text" ng-model="song.video_url">
-        </md-input-container>
-
-        <md-input-container flex="100">
             <p>Select song image</p>
-            <div class="upload-selector" ngf-select ng-model="song.thumb_img" name="thumb_img"
+            <div class="upload-selector" ngf-select ng-model="song.thumb_url" name="thumb_url"
                  ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB" ngf-resize="{ratio: 1:1, centerCrop: true}"
                 >
-                <img ngf-thumbnail="song.thumb_img" class="thumb">
-                <img src="{{song.thumb_img}}" ng-hide="song.thumb_img" class="thumb">
+                <img ngf-thumbnail="song.thumb_url" class="thumb">
+                <img src="{{song.thumb_url}}" ng-hide="song.thumb_url" class="thumb">
             </div>
 
             <!--<div class="upload-actions" layout="row">

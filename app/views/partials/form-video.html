@@ -49,33 +49,19 @@
                     <input type="text" ng-model="video.video_url"/>
                 </md-input-container>
 
-                <md-input-container flex="50">
-                    <label>Related to song</label>
-                    <md-select ng-model="video.song_id">
-                        <md-option ng-repeat="song in songs" value="{{song.id}}">{{song.name}}</md-option>
-                    </md-select>
-                </md-input-container>
-
-                <md-input-container flex="50">
-                    <label>Related to album</label>
-                    <md-select ng-model="video.album_id">
-                        <md-option ng-repeat="album in albums" value="{{album.id}}">{{album.name}}</md-option>
-                    </md-select>
-                </md-input-container>
-
                 <md-input-container flex="100">
                     <p>Select thumb image (500x500 or bigger)</p>
-                    <div class="upload-selector" ngf-select="uploadThumb($file)" ng-model="video.thumb_img" name="file_path"
+                    <div class="upload-selector" ngf-select="uploadThumb($file)" ng-model="video.thumb_url" name="file_path"
                          ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB"
                     >
-                        <img ngf-thumbnail="video.thumb_img" class="thumb">
-                        <img ng-src="{{video.thumb_img}}" ng-hide="video.thumb_img" class="thumb">
+                        <img ngf-thumbnail="video.thumb_url" class="thumb">
+                        <img ng-src="{{video.thumb_url}}" ng-hide="video.thumb_url" class="thumb">
                         <md-progress-linear md-mode="determinate" value="{{progress}}" ng-show="progress"></md-progress-linear>
                         <span ng-show="progress == 100">Uploaded</span>
                     </div>
 
                     <!--<div class="upload-actions" layout="row">
-                        <md-button class="md-raised md-warn" ng-click="clearFile('thumb_img')" ng-show="song.thumb_img && !song.thumb_img.uploaded" style="margin-right:5px;">Remove</md-button>
+                        <md-button class="md-raised md-warn" ng-click="clearFile('thumb_url')" ng-show="song.thumb_url && !song.thumb_url.uploaded" style="margin-right:5px;">Remove</md-button>
                     </div>-->
                 </md-input-container>
 

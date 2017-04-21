@@ -69,13 +69,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
     })
     .// Singers
     state('singer', {
-      url: '/singer/{singerId}',
+      url: '/singer/{contentId}',
       templateUrl: 'views/pages/singer-overview.html',
       controller: 'SingerOverviewCtrl'
     })
     .// Albums
     state('singer-album', {
-      url: '/singer/{singerId}/album',
+      url: '/singer/{contentId}/album',
       templateUrl: 'views/pages/singer-album.html',
       controller: 'SingerAlbumCtrl',
       data: {
@@ -92,7 +92,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
     })
     .// Songs
     state('singer-song', {
-      url: '/singer/{singerId}/song',
+      url: '/singer/{contentId}/song',
       templateUrl: 'views/pages/singer-song.html',
       controller: 'SingerSongCtrl',
       data: {
@@ -100,7 +100,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       }
     })
     .state('song-create', {
-      url: '/singer/{singerId}/song/create',
+      url: '/singer/{contentId}/song/create',
       templateUrl: 'views/pages/song-create.html',
       controller: 'SongCreateCtrl',
       data: {
@@ -108,7 +108,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       }
     })
     .state('song-update', {
-      url: '/singer/{singerId}/song/{songId}/update',
+      url: '/singer/{contentId}/song/{songId}/update',
       templateUrl: 'views/pages/song-update.html',
       controller: 'SongUpdateCtrl',
       data: {
@@ -117,7 +117,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
     })
     .// Videos
     state('singer-video', {
-      url: '/singer/{singerId}/video',
+      url: '/singer/{contentId}/video',
       templateUrl: 'views/pages/singer-video.html',
       controller: 'SingerVideoCtrl',
       data: {
@@ -126,7 +126,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
     })
     .// Photos
     state('singer-photo', {
-      url: '/singer/{singerId}/photo',
+      url: '/singer/{contentId}/photo',
       templateUrl: 'views/pages/singer-photo.html',
       controller: 'SingerPhotoCtrl',
       data: {
@@ -135,7 +135,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
     })
     .// Shows
     state('singer-show', {
-      url: '/singer/{singerId}/show',
+      url: '/singer/{contentId}/show',
       templateUrl: 'views/pages/singer-show.html',
       controller: 'SingerShowCtrl',
       data: {
@@ -143,7 +143,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       }
     })
     .state('singer-news', {
-      url: '/singer/{singerId}/news',
+      url: '/singer/{contentId}/news',
       templateUrl: 'views/pages/singer-news.html',
       controller: 'SingerNewsCtrl',
       data: {
@@ -151,7 +151,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       }
     })
     .state('news-create', {
-      url: '/singer/{singerId}/news/create',
+      url: '/singer/{contentId}/news/create',
       templateUrl: 'views/pages/news-create.html',
       controller: 'NewsCreateCtrl',
       data: {
@@ -159,7 +159,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       }
     })
     .state('news-update', {
-      url: '/singer/{singerId}/news/{newsId}/update',
+      url: '/singer/{contentId}/news/{newsId}/update',
       templateUrl: 'views/pages/news-update.html',
       controller: 'NewsUpdateCtrl',
       data: {
@@ -168,7 +168,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
     })
     .// Wall - Feed
     state('singer-wall', {
-      url: '/singer/{singerId}/wall',
+      url: '/singer/{contentId}/wall',
       templateUrl: 'views/pages/singer-wall.html',
       controller: 'SingerWallCtrl',
       data: {
@@ -177,7 +177,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
     })
     .//Website
     state('singer-website', {
-      url: '/singer/{singerId}/website',
+      url: '/singer/{contentId}/website',
       templateUrl: 'views/pages/singer-website.html',
       controller: 'SingerWebsiteCtrl',
       data: {
@@ -186,7 +186,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
     })
     .// Version
     state('singer-version', {
-      url: '/singer/{singerId}/version',
+      url: '/singer/{contentId}/version',
       templateUrl: 'views/pages/singer-version.html',
       controller: 'SingerVersionCtrl',
       data: {
@@ -195,7 +195,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
     })
     .// Single
     state('singer-single', {
-      url: '/singer/{singerId}/single',
+      url: '/singer/{contentId}/single',
       templateUrl: 'views/pages/singer-single.html',
       controller: 'SingerSingleCtrl',
       data: {

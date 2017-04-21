@@ -148,7 +148,7 @@ app.value('froalaConfig', {
   imageMaxSize: 3 * 1024 * 1024
 });
 
-app.run(function ($rootScope, $state, store, jwtHelper, User, froalaConfig) {
+app.run(function ($rootScope, $state, store, jwtHelper, User, froalaConfig, App) {
 
   $rootScope.$on('$stateChangeStart', function (e, to) {
 
@@ -187,10 +187,14 @@ app.run(function ($rootScope, $state, store, jwtHelper, User, froalaConfig) {
   });
 
   $rootScope.$on('$stateChangeSuccess', function (e, to) {
-    if ($state.params.singerId) {
-      User.rest.get($state.params.singerId).then(function (response) {
-        $rootScope.singerInfo = response.data;
-        $rootScope.logo = $rootScope.singerInfo.avatar;
+    if ($state.params.contentId) {
+      App.rest.get($state.params.contentId).then(function (response) {
+        $rootScope.appInfo = response.data;
+        if ($rootScope.appInfo.avatar) {
+          $rootScope.logo = $rootScope.appInfo.avatar;
+        } else {
+          $rootScope.logo = '/images/logo.jpg';
+        }
       }, function (responseError) {
         if (responseError.status != 401) {
           alert('Could not get the artist');
@@ -198,7 +202,7 @@ app.run(function ($rootScope, $state, store, jwtHelper, User, froalaConfig) {
         }
       });
     } else {
-      $rootScope.singerInfo = '';
+      $rootScope.appInfo = '';
       $rootScope.logo = '/images/logo.jpg';
     }
   });

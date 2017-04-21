@@ -1,4 +1,4 @@
-<p><a ui-sref="singer-song({singerId:$state.params.singerId})">Back to Songs</a></p>
+<p><a ui-sref="singer-song({contentId:$state.params.contentId})">Back to Songs</a></p>
 
 <form name="CreateSong" layout="row" layout-wrap enctype="multipart/form-data">
     <error-block flex="100" messages="errorMsgs"></error-block>
@@ -48,11 +48,6 @@
     <md-input-container flex="100">
         <label>Description</label>
         <textarea ng-model="song.description" cols="30" rows="10"></textarea>
-    </md-input-container>
-
-    <md-input-container flex="100">
-        <label>Video URL</label>
-        <input type="url" ng-model="song.video_url"/>
     </md-input-container>
 
     <md-input-container flex="100" class="align-center">

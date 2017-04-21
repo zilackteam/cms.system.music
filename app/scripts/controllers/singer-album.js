@@ -5,10 +5,10 @@ app.controller('SingerAlbumCtrl', function($rootScope, $scope, $window, $timeout
         name: 'Album Management'
     };
 
-    $scope.singerId = $stateParams.singerId;
+    $scope.contentId = $stateParams.contentId;
     $scope.albums = [];
 
-    Album.rest.getList({content_id : $scope.singerId, includes: 'songs'}).then(function(response) {
+    Album.rest.getList({content_id : $scope.contentId, includes: 'songs'}).then(function(response) {
         $scope.albums = response.data;
     });
     
@@ -60,7 +60,7 @@ app.controller('SingerAlbumCtrl', function($rootScope, $scope, $window, $timeout
             })
         } else {
             Album.rest.add({
-                content_id: $scope.singerId,
+                content_id: $scope.contentId,
                 name: $scope.album.name,
                 description: $scope.album.description,
                 thumb_url: $scope.album.thumb_url,

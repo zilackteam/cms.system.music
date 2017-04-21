@@ -9,6 +9,6 @@
               md-row-height-gt-md="1:1" md-row-height="2:2"
               md-gutter="16px">
     <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="photo in photos">
-        <img ng-src="{{photo.thumb_path}}" alt="" class="clickable" ng-click="openDialog($event, photo)" />
+        <img ng-src="{{photo.thumb_url}}" alt="" class="clickable" ng-click="openDialog($event, photo)" />
     </md-grid-tile>
 </md-grid-list>

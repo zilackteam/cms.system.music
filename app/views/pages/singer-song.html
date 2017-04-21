@@ -1,5 +1,5 @@
 <md-button class="md-raised md-primary"
-           ng-click="changeState('song-create', {singerId : $state.params.singerId})">
+           ng-click="changeState('song-create', {contentId : $state.params.contentId})">
     New Song
 </md-button>
 
@@ -40,7 +40,7 @@
                 <td md-cell>
                     <md-button
                         class="md-icon-button"
-                        ng-click="changeState('song-update', {singerId: singerId, songId: song.id})"
+                        ng-click="changeState('song-update', {contentId: contentId, songId: song.id})"
                         stop-event="click"
                     >
                         <md-icon>edit</md-icon>

@@ -1,4 +1,4 @@
-<p><md-button class="md-raised md-primary" ng-click="changeState('news-create', {singerId: $state.params.singerId})">New News</md-button></p>
+<p><md-button class="md-raised md-primary" ng-click="changeState('news-create', {contentId: $state.params.contentId})">New News</md-button></p>
 
 <md-table-container>
     <table md-table>
@@ -12,7 +12,7 @@
         <tbody md-body>
             <tr md-row ng-repeat="news in result = newsList | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit"
                 class="clickable"
-                ng-click="changeState('news-update', {singerId: $state.params.singerId, newsId: news.id})"
+                ng-click="changeState('news-update', {contentId: $state.params.contentId, newsId: news.id})"
             >
                 <td md-cell>{{news.title}}</td>
                 <!--<td md-cell>{{news.status}}</td>-->
@@ -20,7 +20,7 @@
                 <td md-cell class="actions align-center">
                     <md-button
                         class="md-icon-button"
-                        ng-click="changeState('news-update', {singerId: $state.params.singerId, newsId: news.id})"
+                        ng-click="changeState('news-update', {contentId: $state.params.contentId, newsId: news.id})"
                         stop-event="click"
                     >
                         <md-icon>edit</md-icon>

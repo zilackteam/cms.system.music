@@ -2,7 +2,7 @@
               md-row-height-gt-md="1:1" md-row-height="2:2"
               md-gutter="12px" md-gutter-gt-sm="8px">
   <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="app in apps">
-    <a ui-sref="singer({singerId: app.content_id})">
+    <a ui-sref="singer({contentId: app.content_id})">
       <img ng-src="{{apps.avatar}}" alt=""/>
       <md-grid-tile-footer>
         <h3>{{app.name}}</h3>

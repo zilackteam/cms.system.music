@@ -5,8 +5,10 @@ app.controller('SingerSingleCtrl', function($rootScope, $scope, $window, $timeou
         name: 'Single Management'
     };
 
-    $scope.singerId = $stateParams.singerId;
-    $scope.albums = Album.rest.getList({singer_id : $scope.singerId, with: 'song', cms: 1, is_single: 1}).then(function(response) {
+    $scope.contentId = $stateParams.contentId;
+    $scope.albums = [];
+
+    Album.rest.getList({content_id : $scope.contentId, is_single: 1, includes: 'songs'}).then(function(response) {
         $scope.albums = response.data;
     });
     
@@ -59,7 +61,7 @@ app.controller('SingerSingleCtrl', function($rootScope, $scope, $window, $timeou
             })
         } else {
             Album.rest.add({
-                singer_id: $scope.singerId,
+                content_id: $scope.contentId,
                 name: $scope.album.name,
                 description: $scope.album.description,
                 thumb_img: $scope.album.thumb_img,

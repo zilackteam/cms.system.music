@@ -1,12 +1,12 @@
 app.controller('SingerShowCtrl', function($rootScope, $scope, $window, $timeout, $mdDialog, $location, $state, $stateParams, store, jwtHelper, User, Show) {
     $rootScope.currentPage = {
         class: 'page-singer-show',
-        name: 'Singer Show ' + $stateParams.singerId
+        name: 'Singer Show ' + $stateParams.contentId
     };
 
-    $scope.singerId = $stateParams.singerId;
+    $scope.contentId = $stateParams.contentId;
 
-    Show.rest.getList({singer_id: $scope.singerId})
+    Show.rest.getList({content_id: $scope.contentId})
         .then(function(response) {
             $scope.shows = response.data;
         });
@@ -56,7 +56,7 @@ app.controller('SingerShowCtrl', function($rootScope, $scope, $window, $timeout,
         } else {
             //New
 
-            show.singer_id = $scope.singerId;
+            show.content_id = $scope.contentId;
 
             show.on_datetime = moment(show.on_datetime).format();
             
