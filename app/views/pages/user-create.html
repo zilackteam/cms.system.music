@@ -4,22 +4,20 @@
     <md-content layout="row" layout-wrap>
         <error-block messages="errorMsgs"></error-block>
 
-        <md-input-container flex="100">
-            <md-select ng-model="user.role" placeholder="Role">
-                <md-option ng-value="'admin'">Admin</md-option>
-                <md-option ng-value="'mod'">Mod</md-option>
-                <md-option ng-value="'singer'">Singer</md-option>
-                <md-option ng-value="'fan'">Fan</md-option>
+        <md-input-container flex="50" flex-xs="100">
+            <label>Secname</label>
+            <input type="text" ng-model="user.sec_name"/>
+        </md-input-container>
+
+        <md-input-container flex="50" flex-xs="100">
+            <md-select ng-model="user.type" placeholder="Type">
+                <md-option ng-repeat="authType in authTypes" ng-value="authType.id">{{authType.name}}</md-option>
             </md-select>
         </md-input-container>
 
         <md-input-container flex="50" flex-xs="100">
-            <label>Email</label>
-            <input type="email" ng-model="user.email"/>
-        </md-input-container>
-        <md-input-container flex="50" flex-xs="100">
-            <label>Password</label>
-            <input type="password" ng-model="user.password"/>
+            <label>Secpass</label>
+            <input type="password" ng-model="user.sec_pass"/>
         </md-input-container>
         <md-input-container flex="50" flex-xs="100">
             <label>Name</label>

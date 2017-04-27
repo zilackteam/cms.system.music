@@ -60,6 +60,14 @@ app.factory('User', function(RestService, urls, $http, Upload) {
           });
     }
 
+    var getAuthType = function(){
+        return $http
+            .get(urls.BASE_API + 'auth/type')
+            .then(function(response) {
+                return response.data;
+            });
+    };
+
     // Public API
     return {
         rest: rest,
@@ -70,6 +78,7 @@ app.factory('User', function(RestService, urls, $http, Upload) {
         uploadAvatar: uploadAvatar,
         forgotPassword: forgotPassword,
         verifyForgotToken: verifyForgotToken,
-        resetPassword : resetPassword
+        resetPassword : resetPassword,
+        getAuthType: getAuthType
     }
 });

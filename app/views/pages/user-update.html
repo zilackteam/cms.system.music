@@ -1,17 +1,17 @@
 <p><a ui-sref="user">Back to Users</a></p>
 
 <div layout="column" layout-gt-xs="row">
-    <form name="updateUser" flex layout="row" layout-wrap>
+    <form name="updateUser" flex layout="row" layout-wrap autocomplete="off" role="presentation">
         <h2 class="sub-heading">Update Information</h2>
-        <error-block messages="errorMsgs"></error-block>
+        <error-block messages="errorMsgs" flex="100"></error-block>
 
         <md-input-container flex="50" flex-xs="100">
-            <label>Email</label>
-            <input type="email" ng-model="user.email"/>
+            <label>Secname</label>
+            <input type="text" ng-model="user.sec_name" autocomplete="off"/>
         </md-input-container>
         <md-input-container flex="50" flex-xs="100">
-            <label>Password</label>
-            <input type="password" ng-model="user.password"/>
+            <label>Secpass</label>
+            <input type="password" ng-model="user.sec_pass" autocomplete="off"/>
         </md-input-container>
         <md-input-container flex="50" flex-xs="100">
             <label>Name</label>
@@ -21,14 +21,6 @@
             <label>DOB</label>
             <input type="text" pick-a-date="user.dob"/>
         </md-input-container>
-        <md-input-container flex="50" flex-xs="100" ng-show="isMod">
-            <label>Singer</label>
-            <md-select ng-model="user.singer" multiple>
-            	<md-option ng-repeat="singer in singers" value="{{singer.id}}">{{singer.name}}</md-option>
-		    </md-select>
-        </md-input-container>
-        
-        
 
         <div flex="100" class="align-center actions">
             <md-button class="md-raised md-primary" ng-click="doUpdate()">

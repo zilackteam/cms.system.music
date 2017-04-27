@@ -15,7 +15,7 @@ app.controller('UserCtrl', function($rootScope, $scope, $window, $timeout, $mdDi
     };
 
     $scope.users = [];
-    User.rest.getList().then(function(response){
+    User.rest.getList({'auth_id': $scope.currentUser.id}).then(function(response){
         $scope.users = response.data;
     })
     
@@ -39,6 +39,11 @@ app.controller('UserCreateCtrl', function($rootScope, $scope, $window, $timeout,
     };
 
     $scope.user = {};
+
+    User.getAuthType().then(function(response){
+        $scope.authTypes = response.data;
+    })
+
     $scope.createUser = function() {
         User.rest.add($scope.user).then(function(response) {
             $scope.errorMsgs = [];
@@ -63,8 +68,11 @@ app.controller('UserUpdateCtrl', function($rootScope, $scope, $window, $timeout,
     //Get user info
     $scope.user = {};
     $scope.user.dob = ' ';
+
     User.rest.get(userId).then(function(response) {
         $scope.user = response.data;
+        $scope.user.sec_name = $scope.user.authentication.sec_name;
+        $scope.user.sec_pass = $scope.user.authentication.sec_pass;
     },function(responseError) {
         if (responseError.status == 404) {
             alert('User not found');
@@ -74,16 +82,14 @@ app.controller('UserUpdateCtrl', function($rootScope, $scope, $window, $timeout,
         $state.go('user');
     });
     
-    User.rest.getList({"singer": true}).then(function(response){
-        $scope.singers = response.data;
-    })
-
     $scope.doUpdate= function() {
         User.rest.update($scope.user).then(function(response) {
             $scope.errorMsgs = [];
 
             //Reload object user
             $scope.user = response.data;
+            $scope.user.sec_name = $scope.user.authentication.sec_name;
+            $scope.user.sec_pass = $scope.user.authentication.sec_pass;
 
             //Inform user
             alert('User has been updated successfully!');
@@ -99,7 +105,7 @@ app.controller('UserUpdateCtrl', function($rootScope, $scope, $window, $timeout,
             avatar: avatar
         })
             .then(function(response) {
-                $scope.user.avatar = response.data.data;
+                $scope.user.avatar = response.data.avatar;
                 avatar.uploaded = true;
                 alert('Avatar updated');
             }, function(responseError) {
