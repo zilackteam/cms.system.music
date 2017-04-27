@@ -5,10 +5,7 @@ app.controller('UserCtrl', function($rootScope, $scope, $window, $timeout, $mdDi
     };
     
     $scope.currentUser = store.get('currentUser');
-    if ($scope.currentUser.role == "admin") {
-    	$scope.isAdmin = true;
-    }
-    
+
     // List page
     $scope.query = {
         filter: '',
@@ -68,12 +65,6 @@ app.controller('UserUpdateCtrl', function($rootScope, $scope, $window, $timeout,
     $scope.user.dob = ' ';
     User.rest.get(userId).then(function(response) {
         $scope.user = response.data;
-        
-        if ($scope.user.role == "mod") {
-        	$scope.isMod = true;
-        	
-        	console.log($scope.user.singer);
-        }
     },function(responseError) {
         if (responseError.status == 404) {
             alert('User not found');

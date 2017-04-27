@@ -9,7 +9,7 @@ app.controller('LoginCtrl', function($rootScope, $scope, $window, $timeout, $mdD
     $scope.doLogin = function() {
         User.login($scope.user).then(function(response) {
             store.set('jwt', response.data.token);
-            store.set('currentUser', response.data.user);
+            store.set('currentUser', response.data.auth);
 
             $state.go('/');
         }, function(responseError) {
