@@ -8,7 +8,6 @@ app.controller('SingerVersionCtrl', function($rootScope, $scope, $window, $timeo
     
     Version.rest.listing({content_id: $scope.contentId})
     .then(function(response) {
-        console.log(response.data);
         $scope.versions = response.data;
     });
 

@@ -1,22 +1,22 @@
 app.factory('Website', function (RestService, urls, $http, Upload) {
   var rest = new RestService('website/');
 
-  rest.add = function(singerId) {
-    return $http.post(urls.BASE_API + 'website/' + singerId + '/setup/', [])
+  rest.add = function(contentId) {
+    return $http.post(urls.BASE_API + 'website/' + contentId + '/setup/', [])
       .then(function(response) {
         return response.data
       })
   };
 
-  rest.get = function (singerId, type) {
-    return $http.get(urls.BASE_API + 'website/' + singerId + '/content/' + type, [])
+  rest.get = function (contentId, type) {
+    return $http.get(urls.BASE_API + 'website/' + contentId + '/content/' + type, [])
       .then(function (response) {
         return response.data
       })
   };
 
   rest.update = function (data) {
-    return $http.put(urls.BASE_API + 'website/' + data.singer_id + '/update/', data)
+    return $http.put(urls.BASE_API + 'website/' + data.content_id + '/update/', data)
       .then(function (response) {
         return response.data
       })

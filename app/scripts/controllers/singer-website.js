@@ -2,13 +2,13 @@ app.controller('SingerWebsiteCtrl', function ($rootScope, $scope, $window, $time
                                               store, jwtHelper, urls, User, Website) {
   $rootScope.currentPage = {
     class: 'page-singer-website',
-    name: 'Singer Website ' + $stateParams.singerId
+    name: 'Singer Website ' + $stateParams.contentId
   };
 
-  $scope.singerId = $stateParams.singerId;
+  $scope.contentId = $stateParams.contentId;
 
   //Fetching data
-  Website.rest.get($scope.singerId).then(function (success) {
+  Website.rest.get($scope.contentId).then(function (success) {
     $scope.website = success.data;
   }, function (error) {
     if (error.status === 404) {
@@ -18,7 +18,7 @@ app.controller('SingerWebsiteCtrl', function ($rootScope, $scope, $window, $time
   });
 
   var setup = function () {
-    Website.rest.add($scope.singerId)
+    Website.rest.add($scope.contentId)
       .then(function (success) {
         alert('Singer Website content is setup OK');
         $scope.allowCreate = false;
@@ -31,7 +31,7 @@ app.controller('SingerWebsiteCtrl', function ($rootScope, $scope, $window, $time
   var update = function(type) {
 
     var request = {
-      singer_id : $scope.singerId
+      content_id : $scope.contentId
     };
     request[type + '_title'] = $scope.website[type + '_title'];
     request[type + '_content'] = $scope.website[type + '_content'];
@@ -62,7 +62,7 @@ app.controller('SingerWebsiteCtrl', function ($rootScope, $scope, $window, $time
     imageUploadURL:  urls.BASE_API + 'website/upload',
     imageUploadParams: {
       upload_type: 'image',
-      singer_id: $scope.singerId
+      content_id: $scope.contentId
     },
     requestWithCORS: false,
     requestHeaders: {
