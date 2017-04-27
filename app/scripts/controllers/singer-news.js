@@ -57,7 +57,6 @@ app.controller('NewsCreateCtrl', function($rootScope, $scope, $window, $timeout,
             content_id: $stateParams.contentId,
             upload_type: 'image'
         }).then(function (resp) {
-            console.log(resp);
             $scope.news.feature_url = resp;
         }, function (resp) {
             alert('Unable to upload, please try again');
@@ -69,7 +68,6 @@ app.controller('NewsCreateCtrl', function($rootScope, $scope, $window, $timeout,
     $scope.createNews = function() {
         $scope.news.content_id = $stateParams.contentId;
         $scope.news.thumb_url = $scope.myCroppedImage;
-        console.log($scope.news);
         News.rest.add($scope.news).then(function(response) {
             alert('News created successfully');
             //$state.go('singer-news', {contentId: $stateParams.contentId});

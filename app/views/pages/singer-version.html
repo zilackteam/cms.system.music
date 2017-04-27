@@ -11,16 +11,18 @@
             <tr md-row>
                 <th md-column md-order-by="name">Type</th>
                 <th md-column md-order-by="version">Version</th>
-                <th md-column md-order-by="option">Optional</th>
+                <th md-column md-order-by="icon">Icon</th>
+                <th md-column md-order-by="store_url">Store Url</th>
                 <th md-column md-order-by="created_at">Created</th>
             </tr>
         </thead>
         <tbody md-body>
             <tr md-row ng-repeat="version in result = versions | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit" class="clickable"
             ng-click="openDialog($event, version)" >
-                <td md-cell>{{ version.type == 1 ? 'iOS' : 'Android' }}</td>
+                <td md-cell>{{ version.platform == 'ios' ? 'iOS' : 'Android' }}</td>
                 <td md-cell>{{ version.version }}</td>
-                <td md-cell>{{ version.option == 1 ? 'Required' : 'Optional' }}</td>
+                <td md-cell>{{ version.icon }}</td>
+                <td md-cell>{{ version.store_url }}</td>
                 <td md-cell>{{ version.created_at }}</td>
             </tr>
         </tbody>

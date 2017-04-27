@@ -15,10 +15,10 @@
                 <error-block flex="100" messages="errorMsgs"></error-block>
 
 				<md-input-container flex>
-                    <label>Type</label>
-			        <md-select ng-model="version.type">
-			            <md-option value="1">iOS</md-option>
-			            <md-option value="2">Android</md-option>
+                    <label>Platform</label>
+			        <md-select ng-model="version.platform">
+			            <md-option value="ios">iOS</md-option>
+			            <md-option value="android">Android</md-option>
 			        </md-select>
                 </md-input-container>
 				
@@ -28,13 +28,10 @@
                 </md-input-container>
 
 				<md-input-container flex>
-                    <label>Optional</label>
-			        <md-select ng-model="version.option">
-			            <md-option value="0">Optional</md-option>
-			            <md-option value="1">Require</md-option>
-			        </md-select>
+                    <label>Store URL</label>
+                    <input type="text" ng-model="version.store_url"/>
                 </md-input-container>
-                
+
             </form>
         </div>
     </md-dialog-content>

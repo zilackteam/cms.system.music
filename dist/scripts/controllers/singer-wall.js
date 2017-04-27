@@ -2,10 +2,10 @@ app.controller('SingerWallCtrl', function ($rootScope, $scope, $window, $timeout
   store, jwtHelper, User, Post) {
   $rootScope.currentPage = {
     class: 'page-singer-wall',
-    name: 'Singer Post ' + $stateParams.singerId
+    name: 'Singer Post ' + $stateParams.contentId
   };
 
-  $scope.singerId = $stateParams.singerId;
+  $scope.contentId = $stateParams.contentId;
 
   $scope.query = {
     order: '',
@@ -14,14 +14,13 @@ app.controller('SingerWallCtrl', function ($rootScope, $scope, $window, $timeout
   };
 
   $scope.posts = [];
-  Post.rest.getList({singer_id: $scope.singerId, with: 'meta'})
+  Post.rest.getList({content_id: $scope.contentId, includes: 'commentCount,likeCount'})
     .then(function (response) {
       $scope.posts = response.data;
     });
 
   $scope.openDialog = function (ev, post) {
     $scope.showedPost = post;
-    console.log(post);
 
     $mdDialog.show({
       parent: angular.element(document.body),

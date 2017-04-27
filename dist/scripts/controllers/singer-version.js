@@ -1,13 +1,14 @@
 app.controller('SingerVersionCtrl', function($rootScope, $scope, $window, $timeout, $mdDialog, $location, $state, $stateParams, store, jwtHelper, User, Version) {
     $rootScope.currentPage = {
         class: 'page-singer-version',
-        name: 'Singer Version ' + $stateParams.singerId
+        name: 'Singer Version ' + $stateParams.contentId
     };
     
-    $scope.singerId = $stateParams.singerId;
+    $scope.contentId = $stateParams.contentId;
     
-    Version.rest.getList({singer_id: $scope.singerId, cms: 1})
+    Version.rest.listing({content_id: $scope.contentId})
     .then(function(response) {
+        console.log(response.data);
         $scope.versions = response.data;
     });
 
@@ -51,7 +52,7 @@ app.controller('SingerVersionCtrl', function($rootScope, $scope, $window, $timeo
             })
         } else {
             //New
-        	version.singer_id = $scope.singerId;
+        	version.content_id = $scope.contentId;
 
         	Version.rest.add(version).then(function(response) {
                 alert('New version added successfully!');

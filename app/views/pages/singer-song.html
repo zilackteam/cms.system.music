@@ -26,7 +26,7 @@
         <tbody md-body>
             <tr md-row ng-repeat="song in result = songs | filter:search:name | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit" class="clickable"
             >
-                <td md-cell ng-click="changeState('song-update', {singerId: singerId, songId: song.id})">{{ song.name }}</td>
+                <td md-cell ng-click="changeState('song-update', {contentId: contentId, songId: song.id})">{{ song.name }}</td>
                 <td md-cell>{{ song.album_name }}</td>
                 <td md-cell>{{ song.format_available }}</td>
                 <td md-cell>
