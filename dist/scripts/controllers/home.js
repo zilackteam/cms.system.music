@@ -29,7 +29,7 @@ app.controller('HomeCtrl', function($rootScope, $scope, $window, $timeout, $mdDi
         $mdDialog.hide();
     };
 
-    $scope.submitPhoto = function(application) {
+    $scope.submitApp = function(application) {
         //New
         console.log(application);
 

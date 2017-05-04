@@ -18,7 +18,15 @@ app.factory('User', function(RestService, urls, $http, Upload) {
 
     var changePassword = function(item){
         return $http
-            .post(urls.BASE_API + 'user/change-password', item)
+            .post(urls.BASE_API + 'auth/change-password', item)
+            .then(function(response) {
+                return response.data;
+            });
+    };
+
+    var changeInfo = function(item){
+        return $http
+            .post(urls.BASE_API + 'auth/change-info', item)
             .then(function(response) {
                 return response.data;
             });
@@ -74,6 +82,7 @@ app.factory('User', function(RestService, urls, $http, Upload) {
         login: login,
         getAuthenticatedUser: getAuthenticatedUser,
         changePassword: changePassword,
+        changeInfo: changeInfo,
         refreshToken: refreshToken,
         uploadAvatar: uploadAvatar,
         forgotPassword: forgotPassword,

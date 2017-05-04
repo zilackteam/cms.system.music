@@ -4,7 +4,6 @@ app.controller('MyProfileCtrl', function($rootScope, $scope, $window, $timeout, 
   });
   
   $scope.changePassword = function(user) {
-  	console.log(user);
   	User.changePassword(user).then(function(response) {
         $scope.errorMsgs = [];
 
@@ -19,7 +18,7 @@ app.controller('MyProfileCtrl', function($rootScope, $scope, $window, $timeout, 
   }
   
   $scope.updateProfile = function(user) {
-  	User.rest.update(user).then(function(response) {
+  	User.changeInfo(user).then(function(response) {
         $scope.errorMsgs = [];
 
         //Reload object user

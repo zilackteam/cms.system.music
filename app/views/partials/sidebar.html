@@ -16,6 +16,11 @@
                 <li><a class="md-button" ui-sref="singer-news({contentId:appInfo.content_id})">News</a></li>
                 <li><a class="md-button" ui-sref="singer-photo({contentId:appInfo.content_id})">Photos</a></li>
                 <li><a class="md-button" ui-sref="singer-wall({contentId:appInfo.content_id})">Wall</a></li>
+            </ul>
+        </li>
+        <li ng-show="appInfo">
+            <h2 class="menu-heading md-subhead">Information</h2>
+            <ul>
                 <li><a class="md-button" ui-sref="singer-version({contentId:appInfo.content_id})">Version</a></li>
             </ul>
         </li>
