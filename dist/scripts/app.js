@@ -105,8 +105,8 @@ app.run(function($rootScope, $state, store, jwtHelper, User) {
     });
 
     $rootScope.$on('$stateChangeSuccess', function(e,to) {
-        if ($state.params.singerId) {
-            User.rest.get($state.params.singerId).then(function(response) {
+        if ($state.params.contentId) {
+            User.rest.get($state.params.contentId).then(function(response) {
                 $rootScope.singerInfo = response.data;
                 $rootScope.logo = $rootScope.singerInfo.avatar;
             }, function(responseError) {

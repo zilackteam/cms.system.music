@@ -6,7 +6,7 @@
 <md-content role="navigation">
     <ul class="menu">
         <li ng-show="appInfo">
-            <h2 class="menu-heading md-subhead">Singer: {{singerInfo.name}}</h2>
+            <h2 class="menu-heading md-subhead">Applications: {{appInfo.name}}</h2>
             <ul>
                 <li><a class="md-button" ui-sref="singer-album({contentId:appInfo.content_id})">Albums</a></li>
                 <li><a class="md-button" ui-sref="singer-single({contentId:appInfo.content_id})">Singles</a></li>
@@ -23,7 +23,7 @@
             <h2 class="menu-heading md-subhead">System</h2>
             <ul>
                 <li><a class="md-button" ui-sref="user">Users</a></li>
-                <li><a class="md-button" ui-sref="/">Singers</a></li>
+                <li><a class="md-button" ui-sref="/">Applications</a></li>
                 <li><a class="md-button" ui-sref="setting">Settings</a></li>
             </ul>
         </li>
