@@ -7,18 +7,35 @@
 
 <md-input-container flex="100" flex-gt-xs="50">
     <label>Search by name</label>
-    <input type="text" ng-model="search.name"">
+    <input type="text" ng-model="search.name">
 </md-input-container>
+
+<div class="pull-right">
+    <md-select ng-model="action" class="pull-left" style="margin: 8px 10px 26px 0">
+        <md-option value="">Please select action</md-option>
+        <md-option value="feature">Feature Songs</md-option>
+        <md-option value="unfeature">Unfeature Songs</md-option>
+        <md-option value="public">Public Songs</md-option>
+        <md-option value="private">Private Songs</md-option>
+        <md-option value="delete">Delete Songs</md-option>
+    </md-select>
+    <md-button class="md-raised md-primary pull-right"
+               ng-click="applyAction(action)">
+        Apply
+    </md-button>
+</div>
 
 <md-table-container>
     <table md-table>
         <thead md-head md-order="query.order">
             <tr md-row>
+                <th></th>
                 <th md-column md-order-by="name">Name</th>
                 <th md-column md-order-by="album_name">Album</th>
                 <th md-column md-order-by="">Format</th>
-                <th md-column md-order-by="thumb_img">Thumbnail</th>
+                <th md-column md-order-by="thumb_url">Thumbnail</th>
                 <th md-column md-order-by="is_feature">Feature</th>
+                <th md-column md-order-by="is_public">Public</th>
                 <th md-column md-order-by="created_at">Created</th>
                 <th>Actions</th>
             </tr>
@@ -26,15 +43,25 @@
         <tbody md-body>
             <tr md-row ng-repeat="song in result = songs | filter:search:name | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit" class="clickable"
             >
+                <td><input
+                        type="checkbox"
+                        name="selectedSongs[]"
+                        value="{{ song.id }}"
+                        ng-checked="selection.indexOf(song.id) > -1"
+                        ng-click="toggleSelection(song.id)"
+                ></td>
                 <td md-cell ng-click="changeState('song-update', {contentId: contentId, songId: song.id})">{{ song.name }}</td>
                 <td md-cell>{{ song.album_name }}</td>
                 <td md-cell>{{ song.format_available }}</td>
                 <td md-cell>
-                	<md-icon ng-show="song.thumb_img">done</md-icon>
+                	<md-icon ng-show="song.thumb_url">done</md-icon>
                	</td>
                 <td md-cell>
                 	<input type="checkbox" ng-model="song.is_feature" ng-true-value="1" ng-false-value="0" ng-checked="song.is_feature == 1" 
                 		aria-label="checkbox" ng-click="featureSong(song)">
+                </td>
+                <td md-cell>
+                    {{ song.is_public == 1 ? 'Public' : 'Private' }}
                 </td>
                 <td md-cell>{{ song.created_at }}</td>
                 <td md-cell>

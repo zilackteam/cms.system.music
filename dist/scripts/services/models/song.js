@@ -15,8 +15,35 @@ app.factory('Song', function(RestService, urls, $http, Upload) {
         });
     };
 
+    var deleteSongs = function(item){
+        return $http
+            .post(urls.BASE_API + 'song/delete', item)
+            .then(function(response) {
+                return response.data;
+            });
+    };
+
+    var featureSongs = function(item){
+        return $http
+            .post(urls.BASE_API + 'song/feature', item)
+            .then(function(response) {
+                return response.data;
+            });
+    };
+
+    var publicSongs = function(item){
+        return $http
+            .post(urls.BASE_API + 'song/set-public', item)
+            .then(function(response) {
+                return response.data;
+            });
+    };
+
     // Public API
     return {
-        rest: rest
+        rest: rest,
+        deleteSongs: deleteSongs,
+        featureSongs: featureSongs,
+        publicSongs: publicSongs
     }
 });

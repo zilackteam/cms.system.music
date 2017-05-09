@@ -52,6 +52,71 @@ app.controller('SingerSongCtrl', function($rootScope, $scope, $window, $timeout,
         })
     }
 
+    // Selected song
+    $scope.selection = [];
+
+    // Toggle selection for song
+    $scope.toggleSelection = function toggleSelection(songId) {
+        var idx = $scope.selection.indexOf(songId);
+
+        // Is currently selected
+        if (idx > -1) {
+            $scope.selection.splice(idx, 1);
+        }
+
+        // Is newly selected
+        else {
+            $scope.selection.push(songId);
+        }
+    };
+
+    $scope.action = '';
+
+    $scope.applyAction = function(action) {
+        if ($scope.selection.length ) {
+            if (action == 'feature') {
+                Song.featureSongs({id: $scope.selection.join(), is_feature: 1}).then(function(response) {
+                    alert('Song feature successfully!');
+                    location.reload();
+                }, function(responseError) {
+                    alert('Unable to feature song');
+                })
+            } else if (action == 'unfeature') {
+                Song.featureSongs({id: $scope.selection.join(), is_feature: 0}).then(function(response) {
+                    alert('Song feature successfully!');
+                    location.reload();
+                }, function(responseError) {
+                    alert('Unable to feature song');
+                })
+            } else if (action == 'public') {
+                Song.publicSongs({id: $scope.selection.join(), is_public: 1}).then(function(response) {
+                    alert('Song update successfully!');
+                    location.reload();
+                }, function(responseError) {
+                    alert('Unable to update song');
+                })
+            } else if (action == 'private') {
+                Song.publicSongs({id: $scope.selection.join(), is_public: 0}).then(function(response) {
+                    alert('Song update successfully!');
+                    location.reload();
+                }, function(responseError) {
+                    alert('Unable to update song');
+                })
+            } else if (action == 'delete') {
+                if (confirm('Are you sure want to delete song?')) {
+                    Song.deleteSongs({id: $scope.selection.join()}).then(function (response) {
+                        alert('Song deleted successfully!');
+                        location.reload();
+                    }, function (responseError) {
+                        alert('Unable to delete song');
+                    })
+                }
+            }
+        } else {
+            alert('Please select song.');
+        }
+    }
+
 });
 
 app.controller('SongCreateCtrl', function($rootScope, $scope, $window, $timeout, $mdDialog, $location, $state, $stateParams,
