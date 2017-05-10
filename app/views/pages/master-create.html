@@ -1,0 +1,51 @@
+<p><a ui-sref="master">Back to Masters</a></p>
+
+<form name="CreateMaster">
+    <md-content layout="row" layout-wrap>
+        <error-block messages="errorMsgs"></error-block>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Secname</label>
+            <input type="text" ng-model="master.sec_name"/>
+        </md-input-container>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Secpass</label>
+            <input type="password" ng-model="master.sec_pass"/>
+        </md-input-container>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Name</label>
+            <input type="text" ng-model="master.name"/>
+        </md-input-container>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Application</label>
+            <md-select ng-model="master.content_id" placeholder="Application">
+                <md-option ng-repeat="app in apps" ng-value="app.content_id">{{ app.name }}</md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>DOB</label>
+            <input type="text" pick-a-date="master.dob"/>
+        </md-input-container>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Short info</label>
+            <textarea type="text" ng-model="master.short_info"/>
+        </md-input-container>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Detail info</label>
+            <textarea type="text" ng-model="master.detail_info"/>
+        </md-input-container>
+
+
+        <div flex="100" class="actions">
+            <md-button class="md-raised md-primary" ng-click="createMaster()">
+                Submit
+            </md-button>
+        </div>
+    </md-content>
+</form>

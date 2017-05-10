@@ -1,0 +1,29 @@
+<form name="UpdateApp">
+    <md-content layout="row" layout-wrap>
+        <error-block flex="100" messages="errorMsgs"></error-block>
+
+        <md-input-container flex="50">
+            <label>Name</label>
+            <input type="text" ng-model="application.name" class="md-input">
+        </md-input-container>
+
+        <md-input-container flex="50">
+            <label>Bundle Id</label>
+            <input type="text" ng-model="application.bundle_id" class="md-input">
+        </md-input-container>
+
+        <md-input-container flex="50">
+            <label>Content Id</label>
+            <input type="text" ng-model="application.content_id" class="md-input">
+        </md-input-container>
+
+        <md-input-container flex="100">
+            <label>Description</label>
+            <textarea ng-model="application.description"></textarea>
+        </md-input-container>
+
+        <md-input-container flex="100" class="actions">
+            <md-button class="md-raised md-primary" ng-click="doUpdate(application)">Submit</md-button>
+        </md-input-container>
+    </md-content>
+</form>

@@ -42,7 +42,7 @@ app.factory('User', function(RestService, urls, $http, Upload) {
     var uploadAvatar = function(data) {
         //Default method is POST
         return Upload.upload({
-            url: urls.BASE_API + 'user/avatar',
+            url: urls.BASE_API + 'auth/avatar',
             data: data
         });
     };

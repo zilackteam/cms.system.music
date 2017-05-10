@@ -101,7 +101,7 @@ app.controller('UserUpdateCtrl', function($rootScope, $scope, $window, $timeout,
     // Upload avatar
     $scope.uploadAvatar = function(avatar) {
         User.uploadAvatar({
-            id: userId,
+            id: $scope.user.auth_id,
             avatar: avatar
         })
             .then(function(response) {

@@ -6,6 +6,7 @@ app.controller('HomeCtrl', function($rootScope, $scope, $window, $timeout, $mdDi
 
     $scope.currentUser = store.get('currentUser');
 
+    $scope.apps = {};
     App.rest.getList({'auth_id': $scope.currentUser.id}).then(function(response) {
         $scope.apps = response.data;
     }, function(responseError) {

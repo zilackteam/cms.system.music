@@ -202,6 +202,33 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
         isSingerPage: true
       }
     })
+    .// Application info
+    state('singer-app', {
+      url: '/singer/{contentId}/app',
+      templateUrl: 'views/pages/singer-app.html',
+      controller: 'SingerAppCtrl',
+      data: {
+        isSingerPage: true
+      }
+    })
+    .// Master
+    state('master', {
+      url: '/master',
+      templateUrl: 'views/pages/master-list.html',
+      controller: 'MasterCtrl'
+    })
+    .
+    state('master-create', {
+      url: '/master/create',
+      templateUrl: 'views/pages/master-create.html',
+      controller: 'MasterCreateCtrl'
+    })
+    .
+    state('master-update', {
+      url: '/master/:masterId/update',
+      templateUrl: 'views/pages/master-update.html',
+      controller: 'MasterUpdateCtrl'
+    })
   ;
 
 });
