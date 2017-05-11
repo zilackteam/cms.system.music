@@ -11,13 +11,15 @@
                 <tr md-row>
                     <th md-column md-order-by="sec_name"><span>Secname</span></th>
                     <th md-column md-order-by="name"><span>Name</span></th>
+                    <th md-column md-order-by="content_id"><span>Application</span></th>
                     <th md-column class="actions"><span>Actions</span></th>
                 </tr>
             </thead>
             <tbody md-body>
                 <tr md-row ng-repeat="master in (result = (masters | filter: {$ : query.filter}) | orderBy: order | limitTo: query.limit : (query.page - 1) * query.limit )">
-                    <td md-cell>{{master.authentication.sec_name}}</td>
-                    <td md-cell>{{master.name}}</td>
+                    <td md-cell>{{ master.authentication.sec_name }}</td>
+                    <td md-cell>{{ master.name }}</td>
+                    <td md-cell>{{ master.application.name }}</td>
                     <td md-cell class="actions">
                         <md-button class="md-icon-button" ng-click="changeState('master-update', {masterId: master.id})">
                             <md-icon>edit</md-icon>
