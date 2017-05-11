@@ -17,7 +17,7 @@
             </thead>
             <tbody md-body>
                 <tr md-row ng-repeat="master in (result = (masters | filter: {$ : query.filter}) | orderBy: order | limitTo: query.limit : (query.page - 1) * query.limit )">
-                    <td md-cell>{{ master.authentication.sec_name }}</td>
+                    <td md-cell>{{ master.sec_name }}</td>
                     <td md-cell>{{ master.name }}</td>
                     <td md-cell>{{ master.application.name }}</td>
                     <td md-cell class="actions">

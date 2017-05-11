@@ -86,8 +86,8 @@ app.controller('MasterUpdateCtrl', function($rootScope, $scope, $window, $timeou
 
     Master.rest.get(masterId).then(function(response) {
         $scope.master = response.data;
-        $scope.master.sec_name = $scope.master.authentication.sec_name;
-        $scope.master.sec_pass = $scope.master.authentication.sec_pass;
+        $scope.master.sec_name = $scope.master.sec_name;
+        $scope.master.sec_pass = $scope.master.sec_pass;
     },function(responseError) {
         if (responseError.status == 404) {
             alert('Master not found');
@@ -103,8 +103,8 @@ app.controller('MasterUpdateCtrl', function($rootScope, $scope, $window, $timeou
 
             //Reload object user
             $scope.master = response.data;
-            $scope.master.sec_name = $scope.master.authentication.sec_name;
-            $scope.master.sec_pass = $scope.master.authentication.sec_pass;
+            $scope.master.sec_name = $scope.master.sec_name;
+            $scope.master.sec_pass = $scope.master.sec_pass;
 
             //Inform user
             alert('Master has been updated successfully!');
@@ -117,7 +117,7 @@ app.controller('MasterUpdateCtrl', function($rootScope, $scope, $window, $timeou
     $scope.uploadAvatar = function(avatar) {
         console.log('aaa');
         Master.uploadAvatar({
-                id: $scope.master.auth_id,
+                id: $scope.master.id,
                 avatar: avatar
             })
             .then(function(response) {

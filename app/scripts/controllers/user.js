@@ -15,7 +15,7 @@ app.controller('UserCtrl', function($rootScope, $scope, $window, $timeout, $mdDi
     };
 
     $scope.users = [];
-    User.rest.getList({'auth_id': $scope.currentUser.id}).then(function(response){
+    User.rest.getList().then(function(response){
         $scope.users = response.data;
     })
     
@@ -71,8 +71,8 @@ app.controller('UserUpdateCtrl', function($rootScope, $scope, $window, $timeout,
 
     User.rest.get(userId).then(function(response) {
         $scope.user = response.data;
-        $scope.user.sec_name = $scope.user.authentication.sec_name;
-        $scope.user.sec_pass = $scope.user.authentication.sec_pass;
+        $scope.user.sec_name = $scope.user.sec_name;
+        $scope.user.sec_pass = $scope.user.sec_pass;
     },function(responseError) {
         if (responseError.status == 404) {
             alert('User not found');
@@ -88,8 +88,8 @@ app.controller('UserUpdateCtrl', function($rootScope, $scope, $window, $timeout,
 
             //Reload object user
             $scope.user = response.data;
-            $scope.user.sec_name = $scope.user.authentication.sec_name;
-            $scope.user.sec_pass = $scope.user.authentication.sec_pass;
+            $scope.user.sec_name = $scope.user.sec_name;
+            $scope.user.sec_pass = $scope.user.sec_pass;
 
             //Inform user
             alert('User has been updated successfully!');
@@ -101,7 +101,7 @@ app.controller('UserUpdateCtrl', function($rootScope, $scope, $window, $timeout,
     // Upload avatar
     $scope.uploadAvatar = function(avatar) {
         User.uploadAvatar({
-            id: $scope.user.auth_id,
+            id: $scope.user.id,
             avatar: avatar
         })
             .then(function(response) {

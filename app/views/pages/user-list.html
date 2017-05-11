@@ -16,7 +16,7 @@
             </thead>
             <tbody md-body>
                 <tr md-row ng-repeat="user in (result = (users | filter: {$ : query.filter}) | orderBy: order | limitTo: query.limit : (query.page - 1) * query.limit )">
-                    <td md-cell>{{user.authentication.sec_name}}</td>
+                    <td md-cell>{{user.sec_name}}</td>
                     <td md-cell>{{user.name}}</td>
                     <td md-cell class="actions">
                         <md-button class="md-icon-button" ng-click="changeState('user-update', {userId: user.id})">
