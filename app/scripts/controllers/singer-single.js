@@ -46,9 +46,11 @@ app.controller('SingerSingleCtrl', function($rootScope, $scope, $window, $timeou
                 id: $scope.album.id,
                 name: $scope.album.name,
                 description: $scope.album.description,
-                thumb_img: $scope.album.thumb_img,
+                thumb_url: $scope.album.thumb_url,
+                feature_url: $scope.album.feature_url,
                 is_public: $scope.album.is_public,
                 keywords: $scope.album.keywords,
+                performer: $scope.album.performer,
                 is_single: 1,
             }).then(function(response) {
                 alert('Single updated successfully!');
@@ -64,9 +66,11 @@ app.controller('SingerSingleCtrl', function($rootScope, $scope, $window, $timeou
                 content_id: $scope.contentId,
                 name: $scope.album.name,
                 description: $scope.album.description,
-                thumb_img: $scope.album.thumb_img,
+                thumb_url: $scope.album.thumb_url,
+                feature_url: $scope.album.feature_url,
                 is_public: $scope.album.is_public,
                 keywords: $scope.album.keywords,
+                performer: $scope.album.performer,
                 is_single: 1,
             }).then(function(response) {
                 //Inform user + clear error
