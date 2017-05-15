@@ -19,6 +19,7 @@ app.controller('SingerAppCtrl', function($rootScope, $scope, $window, $timeout, 
         App.rest.update($scope.application).then(function(response) {
             alert('Application updated successfully!');
             $scope.errorMsgs = [];
+            $scope.application.thumb_url = response.data.thumb_url;
         }, function(responseError) {
             $scope.errorMsgs = responseError.data.error;
         },function(evt) {

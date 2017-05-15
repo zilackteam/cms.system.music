@@ -22,6 +22,16 @@
             <textarea ng-model="application.description"></textarea>
         </md-input-container>
 
+        <md-input-container flex="100">
+            <p>Select album image</p>
+            <div class="upload-selector" ngf-select ng-model="application.thumb_url" name="thumb_url"
+                 ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB">
+                <img ngf-thumbnail="application.thumb_url" class="thumb">
+                <img src="" ng-hide="application.thumb_url" class="thumb">
+                <md-progress-linear md-mode="determinate" value="{{application.progress}}"></md-progress-linear>
+            </div>
+        </md-input-container>
+
         <md-input-container flex="100" class="actions">
             <md-button class="md-raised md-primary" ng-click="doUpdate(application)">Submit</md-button>
         </md-input-container>
