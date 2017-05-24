@@ -1,0 +1,34 @@
+<md-dialog class="form-dialog form-show">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{ "New Notification" }}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+                <md-icon aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <form action="createNotification" layout="column" layout-gt-xs="row" layout-wrap>
+
+                <error-block flex="100" messages="errorMsgs"></error-block>
+
+                <md-input-container flex="100">
+                    <label>Title</label>
+                    <input type="text" ng-model="notification.title"/>
+                </md-input-container>
+
+                <md-input-container flex>
+                    <label>Content</label>
+                    <input type="text" ng-model="notification.content"/>
+                </md-input-container>
+
+            </form>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button class="md-raised md-primary" ng-click="submitNotification(notification)">Submit</md-button>
+    </md-dialog-actions>
+</md-dialog>

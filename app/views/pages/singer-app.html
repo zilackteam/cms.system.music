@@ -14,12 +14,22 @@
 
         <md-input-container flex="50">
             <label>Content Id</label>
-            <input type="text" ng-model="application.content_id" class="md-input">
+            <input type="text" ng-model="application.content_id" class="md-input" disabled="disabled">
         </md-input-container>
 
         <md-input-container flex="100">
             <label>Description</label>
             <textarea ng-model="application.description"></textarea>
+        </md-input-container>
+
+        <md-input-container flex="100">
+            <label>iOS Server Key</label>
+            <textarea ng-model="application.ios_server_key"></textarea>
+        </md-input-container>
+
+        <md-input-container flex="100">
+            <label>Android Server Key</label>
+            <textarea ng-model="application.android_server_key"></textarea>
         </md-input-container>
 
         <md-input-container flex="100">

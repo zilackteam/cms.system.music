@@ -1,0 +1,25 @@
+<p>
+    <md-button class="md-raised md-primary" ng-click="openDialog($event)">
+        New Notification
+    </md-button>
+</p>
+<br/>
+
+<md-table-container>
+    <table md-table>
+        <thead md-head md-order="query.order">
+        <tr md-row>
+            <th md-column md-order-by="title">Title</th>
+            <th md-column md-order-by="content">Content</th>
+        </tr>
+        </thead>
+        <tbody md-body>
+        <tr md-row ng-repeat="notification in result = notifications | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit">
+            <td md-cell>{{ notification.title }}</td>
+            <td md-cell>{{ notification.content }}</td>
+        </tr>
+        </tbody>
+    </table>
+</md-table-container>
+
+<md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{result.length}}"></md-table-pagination>

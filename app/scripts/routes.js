@@ -229,6 +229,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       templateUrl: 'views/pages/master-update.html',
       controller: 'MasterUpdateCtrl'
     })
+    .// Notification
+    state('singer-notification', {
+      url: '/singer/{contentId}/notification',
+      templateUrl: 'views/pages/singer-notification.html',
+      controller: 'SingerNotificationCtrl'
+    })
   ;
 
 });
