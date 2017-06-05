@@ -61,6 +61,12 @@
                     </div>
                 </md-input-container>
 
+                <md-input-container flex="100">
+                    <p>List Songs</p>
+                    <ul>
+                        <p ng-repeat="song in songs"><a ng-click="changeState('song-update', {contentId: contentId, songId: song.id})" href="">{{ song.name }}</a></p>
+                    </ul>
+                </md-input-container>
                 <div class="actions" layout="row">
                     <md-button class="md-raised md-primary" ng-click="submitAlbum(album.id)">Submit</md-button>
                     <span flex></span>

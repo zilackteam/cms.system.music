@@ -19,12 +19,15 @@ app.controller('SingerAlbumCtrl', function($rootScope, $scope, $window, $timeout
     };
 
     $scope.album = '';
+    $scope.songs = '';
     $scope.openDialog = function(ev, album) {
         if (album) {
             $scope.album = album;
+            $scope.songs = album.songs;
             $scope.albumImg = null;
         } else {
             $scope.album = '';
+            $scope.songs = '';
         }
 
         $mdDialog.show({
