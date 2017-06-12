@@ -235,6 +235,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       templateUrl: 'views/pages/singer-notification.html',
       controller: 'SingerNotificationCtrl'
     })
+    .// Live stream
+    state('singer-liveconfig', {
+      url: '/singer/{contentId}/liveconfig',
+      templateUrl: 'views/pages/singer-liveconfig.html',
+      controller: 'SingerLiveConfigCtrl'
+    })
   ;
 
 });

@@ -1,0 +1,33 @@
+<form name="UpdateStream">
+    <md-content layout="row" layout-wrap>
+        <error-block flex="100" messages="errorMsgs"></error-block>
+
+        <md-input-container flex="50">
+            <label>Protocol</label>
+            <md-select ng-model="liveConfig.protocol">
+                <md-option value="1">RTMP</md-option>
+                <md-option value="2">RTSP</md-option>
+                <md-option value="3">HTTP</md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container flex="50">
+            <label>Address</label>
+            <input type="text" ng-model="liveConfig.address" class="md-input">
+        </md-input-container>
+
+        <md-input-container flex="50">
+            <label>Port</label>
+            <input type="text" ng-model="liveConfig.port" class="md-input">
+        </md-input-container>
+
+        <md-input-container flex="50">
+            <label>Application</label>
+            <input type="text" ng-model="liveConfig.application" class="md-input">
+        </md-input-container>
+
+        <md-input-container flex="100" class="actions">
+            <md-button class="md-raised md-primary" ng-click="doUpdate(liveConfig)">Submit</md-button>
+        </md-input-container>
+    </md-content>
+</form>
