@@ -91,7 +91,7 @@
                 </tr>
                 <tr>
                     <td class="format">Lossless</td>
-                    <td class="file-sample"><audio controls ngf-src="song.file_lossless" ng-show="!song.file_lossless"></audio></td>
+                    <td class="file-sample"><audio controls ngf-src="song.file_lossless" ng-show="song.file_lossless"></audio></td>
                     <td class="actions">
                         <md-button class="md-raised md-primary" ngf-select ng-model="song.file_lossless" name="file_lossless" ngf-accept="'audio/*'">Select file</md-button>
                         <!--<md-button class="md-raised md-warn" ng-click="clearFile('file_lossless')" ng-show="song.file_lossless && !song.file_lossless.uploaded" style="margin-right:5px;">Remove</md-button>-->

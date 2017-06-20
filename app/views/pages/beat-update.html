@@ -1,0 +1,89 @@
+<div class="page-actions" layout="row" flex="100">
+    <a ui-sref="singer-beat({contentId:$state.params.contentId})">Back to Beats</a>
+    <span flex></span>
+    <md-button class="md-raised md-warn" ng-click="deleteThis()">Delete</md-button>
+</div>
+
+
+<form name="UpdateBeat">
+    <md-content layout="row" layout-wrap>
+        <error-block flex="100" messages="errorMsgs"></error-block>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Name</label>
+            <input type="text" ng-model="beat.name"/>
+        </md-input-container>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Performer</label>
+            <input type="text" ng-model="beat.performer"/>
+        </md-input-container>
+
+        <md-input-container flex="50" flex-xs="100">
+            <label>Author</label>
+            <input type="text" ng-model="beat.author"/>
+        </md-input-container>
+        
+        <md-input-container flex="50" flex-xs="100">
+	    	<label>Public</label>
+	        <md-select ng-model="beat.is_public">
+	            <md-option value="0">Private</md-option>
+	            <md-option value="1">Public</md-option>
+	        </md-select>
+	    </md-input-container>
+	    
+    	<md-input-container flex="50" flex-xs="100">
+	    	<label>Keywords</label>
+	    	<input type="text" ng-model="beat.keywords"/>
+	    </md-input-container>
+
+
+        <md-input-container flex="100">
+            <label>Description</label>
+            <textarea ng-model="beat.description" cols="30" rows="10"></textarea>
+        </md-input-container>
+
+        <md-input-container flex="100">
+            <p>Select beat image</p>
+            <div class="upload-selector" ngf-select ng-model="beat.thumb_url" name="thumb_url"
+                 ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB" ngf-resize="{ratio: 1:1, centerCrop: true}"
+                >
+                <img ngf-thumbnail="beat.thumb_url" class="thumb">
+                <img src="{{beat.thumb_url}}" ng-hide="beat.thumb_url" class="thumb">
+            </div>
+
+        </md-input-container>
+
+        <md-input-container flex="100">
+            <p>Beat Files</p>
+            <table class="beat-files">
+                <tr>
+                    <td class="format">128Kbs</td>
+                    <td class="file-sample"><audio controls ngf-src="beat.file128" ng-show="beat.file128"></audio></td>
+                    <td class="actions">
+                        <md-button class="md-raised md-primary" ngf-select ng-model="beat.file128" name="file128" ngf-accept="'audio/*'">Select file</md-button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="format">320Kbs</td>
+                    <td class="file-sample"><audio controls ngf-src="beat.file320" ng-show="beat.file320"></audio></td>
+                    <td class="actions">
+                        <md-button class="md-raised md-primary" ngf-select ng-model="beat.file320" name="file320" ngf-accept="'audio/*'">Select file</md-button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="format">Lossless</td>
+                    <td class="file-sample"><audio controls ngf-src="beat.file_lossless" ng-show="beat.file_lossless"></audio></td>
+                    <td class="actions">
+                        <md-button class="md-raised md-primary" ngf-select ng-model="beat.file_lossless" name="file_lossless" ngf-accept="'audio/*'">Select file</md-button>
+                    </td>
+                </tr>
+            </table>
+        </md-input-container>
+
+        <md-input-container flex="100" class="actions">
+            <md-button class="md-raised md-primary" ng-click="doUpdate()">Submit</md-button>
+            <md-progress-linear md-mode="determinate" value="{{progress}}" ng-show="progress"></md-progress-linear>
+        </md-input-container>
+    </md-content>
+</form>

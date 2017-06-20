@@ -1,0 +1,79 @@
+<md-button class="md-raised md-primary"
+           ng-click="changeState('beat-create', {contentId : $state.params.contentId})">
+    New Beat
+</md-button>
+
+<br>
+
+<md-input-container flex="100" flex-gt-xs="50">
+    <label>Search by name</label>
+    <input type="text" ng-model="search.name">
+</md-input-container>
+
+<div class="pull-right">
+    <md-select ng-model="action" class="pull-left" style="margin: 8px 10px 26px 0">
+        <md-option value="">Please select action</md-option>
+        <md-option value="feature">Feature Beats</md-option>
+        <md-option value="unfeature">Unfeature Beats</md-option>
+        <md-option value="public">Public Beats</md-option>
+        <md-option value="private">Private Beats</md-option>
+        <md-option value="delete">Delete Beats</md-option>
+    </md-select>
+    <md-button class="md-raised md-primary pull-right"
+               ng-click="applyAction(action)">
+        Apply
+    </md-button>
+</div>
+
+<md-table-container>
+    <table md-table>
+        <thead md-head md-order="query.order">
+            <tr md-row>
+                <th></th>
+                <th md-column md-order-by="name">Name</th>
+                <th md-column md-order-by="">Format</th>
+                <th md-column md-order-by="thumb_url">Thumbnail</th>
+                <th md-column md-order-by="is_feature">Feature</th>
+                <th md-column md-order-by="is_public">Public</th>
+                <th md-column md-order-by="created_at">Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row ng-repeat="beat in result = beats | filter:search:name | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit" class="clickable"
+            >
+                <td><input
+                        type="checkbox"
+                        name="selectedBeats[]"
+                        value="{{ beat.id }}"
+                        ng-checked="selection.indexOf(beat.id) > -1"
+                        ng-click="toggleSelection(beat.id)"
+                ></td>
+                <td md-cell ng-click="changeState('beat-update', {contentId: contentId, beatId: beat.id})">{{ beat.name }}</td>
+                <td md-cell>{{ beat.format_available }}</td>
+                <td md-cell>
+                	<md-icon ng-show="beat.thumb_url">done</md-icon>
+               	</td>
+                <td md-cell>
+                	<input type="checkbox" ng-model="beat.is_feature" ng-true-value="1" ng-false-value="0" ng-checked="beat.is_feature == 1"
+                		aria-label="checkbox" ng-click="featureBeat(beat)">
+                </td>
+                <td md-cell>
+                    {{ beat.is_public == 1 ? 'Public' : 'Private' }}
+                </td>
+                <td md-cell>{{ beat.created_at }}</td>
+                <td md-cell>
+                    <md-button
+                        class="md-icon-button"
+                        ng-click="changeState('beat-update', {contentId: contentId, beatId: beat.id})"
+                        stop-event="click"
+                    >
+                        <md-icon>edit</md-icon>
+                    </md-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>
+
+<md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{result.length}}"></md-table-pagination>

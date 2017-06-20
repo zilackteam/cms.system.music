@@ -115,6 +115,31 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
         isSingerPage: true
       }
     })
+    .// Beats
+    state('singer-beat', {
+      url: '/singer/{contentId}/beat',
+      templateUrl: 'views/pages/singer-beat.html',
+      controller: 'SingerBeatCtrl',
+      data: {
+        isSingerPage: true
+      }
+    })
+    .state('beat-create', {
+      url: '/singer/{contentId}/beat/create',
+      templateUrl: 'views/pages/beat-create.html',
+      controller: 'BeatCreateCtrl',
+      data: {
+        isSingerPage: true
+      }
+    })
+    .state('beat-update', {
+      url: '/singer/{contentId}/beat/{beatId}/update',
+      templateUrl: 'views/pages/beat-update.html',
+      controller: 'BeatUpdateCtrl',
+      data: {
+        isSingerPage: true
+      }
+    })
     .// Videos
     state('singer-video', {
       url: '/singer/{contentId}/video',

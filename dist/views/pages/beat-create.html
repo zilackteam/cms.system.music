@@ -1,0 +1,45 @@
+<p><a ui-sref="singer-beat({contentId:$state.params.contentId})">Back to Beats</a></p>
+
+<form name="CreateSong" layout="row" layout-wrap enctype="multipart/form-data">
+    <error-block flex="100" messages="errorMsgs"></error-block>
+
+    <md-input-container flex="50" flex-xs="100">
+        <label>Name</label>
+        <input type="text" ng-model="beat.name"/>
+    </md-input-container>
+
+
+    <md-input-container flex="50" flex-xs="100">
+        <label>Performer</label>
+        <input type="text" ng-model="beat.performer"/>
+    </md-input-container>
+
+    <md-input-container flex="50" flex-xs="100">
+        <label>Author</label>
+        <input type="text" ng-model="beat.author"/>
+    </md-input-container>
+    
+    <md-input-container flex="50" flex-xs="100">
+    	<label>Public</label>
+        <md-select ng-model="beat.is_public">
+            <md-option value="0">Private</md-option>
+            <md-option value="1">Public</md-option>
+        </md-select>
+    </md-input-container>
+    
+	<md-input-container flex="50" flex-xs="100">
+    	<label>Keywords</label>
+    	<input type="text" ng-model="beat.keywords"/>
+    </md-input-container>
+
+
+    <md-input-container flex="100">
+        <label>Description</label>
+        <textarea ng-model="beat.description" cols="30" rows="10"></textarea>
+    </md-input-container>
+
+    <md-input-container flex="100" class="align-center">
+        <md-button class="md-raised md-primary" ng-click="createBeat()">Submit</md-button>
+    </md-input-container>
+    </md-content>
+</form>
