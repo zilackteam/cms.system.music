@@ -58,24 +58,9 @@
             <p>Beat Files</p>
             <table class="beat-files">
                 <tr>
-                    <td class="format">128Kbs</td>
                     <td class="file-sample"><audio controls ngf-src="beat.file128" ng-show="beat.file128"></audio></td>
                     <td class="actions">
                         <md-button class="md-raised md-primary" ngf-select ng-model="beat.file128" name="file128" ngf-accept="'audio/*'">Select file</md-button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="format">320Kbs</td>
-                    <td class="file-sample"><audio controls ngf-src="beat.file320" ng-show="beat.file320"></audio></td>
-                    <td class="actions">
-                        <md-button class="md-raised md-primary" ngf-select ng-model="beat.file320" name="file320" ngf-accept="'audio/*'">Select file</md-button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="format">Lossless</td>
-                    <td class="file-sample"><audio controls ngf-src="beat.file_lossless" ng-show="beat.file_lossless"></audio></td>
-                    <td class="actions">
-                        <md-button class="md-raised md-primary" ngf-select ng-model="beat.file_lossless" name="file_lossless" ngf-accept="'audio/*'">Select file</md-button>
                     </td>
                 </tr>
             </table>
