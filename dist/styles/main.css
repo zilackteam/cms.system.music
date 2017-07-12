@@ -208,6 +208,7 @@ md-sidenav .menu a.md-button {
   padding: 0 15px;
   display: block;
   text-align: left;
+  text-transform: none;
 }
 
 md-sidenav h2.menu-heading {

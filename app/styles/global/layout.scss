@@ -36,6 +36,7 @@ md-sidenav  {
       padding: 0 15px;
       display: block;
       text-align: left;
+      text-transform: none;
     }
   }
 
@@ -50,7 +51,7 @@ md-sidenav  {
     max-width: 100%;
     width: auto;
     color: rgba(255, 255, 255, 0.54);
-    text-transform: uppercase;
+    text-transform: none;
   }
 
 }
