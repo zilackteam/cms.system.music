@@ -231,8 +231,6 @@ app.run(function ($rootScope, $state, store, jwtHelper, User, froalaConfig, App)
       'data' : decrypted,
     }
 
-    console.log(result);
-
     return result;
   };
 
