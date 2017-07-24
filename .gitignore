@@ -2,3 +2,4 @@ bower_components
 node_modules
 app/styles/main.css.map
 app/styles/main.css
+/.idea
