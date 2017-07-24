@@ -1,4 +1,4 @@
-app.factory('Version', function (RestService, urls, $http, Upload) {
+app.factory('Version', function (RestService, urls, $http, Upload, $rootScope) {
   var rest = new RestService('version/');
 
   rest.listing = function(options) {
@@ -9,7 +9,7 @@ app.factory('Version', function (RestService, urls, $http, Upload) {
         params: params
       })
       .then(function(response) {
-        return response.data;
+        return $rootScope.decrypt(response.data);
       });
   };
 

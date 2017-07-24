@@ -1,4 +1,4 @@
-app.factory('App', function(RestService, urls, $http, Upload) {
+app.factory('App', function(RestService, urls, $http, Upload, $rootScope) {
     var rest = new RestService('apps/');
 
     rest.update = function(item) {
@@ -11,7 +11,7 @@ app.factory('App', function(RestService, urls, $http, Upload) {
             url: urls.BASE_API + 'apps/' + item.content_id,
             data: item
         }).then(function(response) {
-            return response.data;
+            return $rootScope.decrypt(response.data);
         });
     };
 

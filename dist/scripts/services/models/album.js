@@ -1,4 +1,4 @@
-app.factory('Album', function(RestService, urls, $http, Upload) {
+app.factory('Album', function(RestService, urls, $http, Upload, $rootScope) {
     var rest = new RestService('album/');
 
     rest.add = function(item) {
@@ -11,7 +11,7 @@ app.factory('Album', function(RestService, urls, $http, Upload) {
             url: urls.BASE_API + 'album',
             data: item
         }).then(function(response) {
-            return response.data
+            return $rootScope.decrypt(response.data);
         });
     };
 
@@ -25,7 +25,7 @@ app.factory('Album', function(RestService, urls, $http, Upload) {
             url: urls.BASE_API + 'album/' + item.id,
             data: item
         }).then(function(response) {
-            return response.data
+            return $rootScope.decrypt(response.data);
         });
     };
 

@@ -1,10 +1,10 @@
-app.factory('User', function(RestService, urls, $http, Upload) {
+app.factory('User', function(RestService, urls, $http, Upload, $rootScope) {
     var rest = new RestService('user/');
 
     var login = function(credentials) {
         return $http.post(urls.BASE_API + 'auth/manager', credentials)
             .then(function(response) {
-                return response.data;
+                return $rootScope.decrypt(response.data);
             })
     };
 
@@ -12,7 +12,7 @@ app.factory('User', function(RestService, urls, $http, Upload) {
         return $http
             .get(urls.BASE_API + 'auth/authenticated')
             .then(function(response) {
-                return response.data;
+                return $rootScope.decrypt(response.data);
             });
     };
 
@@ -20,7 +20,7 @@ app.factory('User', function(RestService, urls, $http, Upload) {
         return $http
             .post(urls.BASE_API + 'auth/change-password', item)
             .then(function(response) {
-                return response.data;
+                return $rootScope.decrypt(response.data);
             });
     };
 
@@ -28,14 +28,14 @@ app.factory('User', function(RestService, urls, $http, Upload) {
         return $http
             .post(urls.BASE_API + 'auth/change-info', item)
             .then(function(response) {
-                return response.data;
+                return $rootScope.decrypt(response.data);
             });
     };
 
     var refreshToken = function() {
         return $http.post(urls.BASE_API + 'auth/refresh-token', [])
             .then(function(response) {
-                return response.data
+                return $rootScope.decrypt(response.data);
             })
     };
 
@@ -50,21 +50,21 @@ app.factory('User', function(RestService, urls, $http, Upload) {
     var forgotPassword = function(data) {
         return $http.post(urls.BASE_API + 'password/email', data)
           .then(function(response) {
-              return response.data;
+              return $rootScope.decrypt(response.data);
           });
     }
 
     var verifyForgotToken = function(token) {
         return $http.get(urls.BASE_API + 'password/verify-token/' + token)
           .then(function(response) {
-              return response.data;
+              return $rootScope.decrypt(response.data);
           });
     }
 
     var resetPassword = function(data) {
         return $http.post(urls.BASE_API + 'password/reset', data)
           .then(function(response) {
-              return response.data;
+              return $rootScope.decrypt(response.data);
           });
     }
 
@@ -72,7 +72,7 @@ app.factory('User', function(RestService, urls, $http, Upload) {
         return $http
             .get(urls.BASE_API + 'auth/type')
             .then(function(response) {
-                return response.data;
+                return $rootScope.decrypt(response.data);
             });
     };
 

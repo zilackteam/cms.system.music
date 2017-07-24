@@ -1,12 +1,13 @@
-app.factory('Post', function(RestService, urls, $http, Upload) {
+app.factory('Post', function(RestService, urls, $http, Upload, $rootScope) {
     var rest = new RestService('post/');
 
     function upload(data) {
         return Upload.upload({
             url: urls.BASE_API + 'post/upload',
             data: data
-        }).then(function (resp) {
-            return resp.data.link;
+        }).then(function (response) {
+            var data = $rootScope.decrypt(response.data);
+            return data.link;
         });
     }
 

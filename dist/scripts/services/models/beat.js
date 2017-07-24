@@ -1,4 +1,4 @@
-app.factory('Beat', function(RestService, urls, $http, Upload) {
+app.factory('Beat', function(RestService, urls, $http, Upload, $rootScope) {
     var rest = new RestService('beat/');
 
     rest.update = function(item) {
@@ -11,7 +11,7 @@ app.factory('Beat', function(RestService, urls, $http, Upload) {
             url: urls.BASE_API + 'beat/' + item.id,
             data: item
         }).then(function(response) {
-            return response.data;
+            return $rootScope.decrypt(response.data);
         });
     };
 
@@ -19,7 +19,7 @@ app.factory('Beat', function(RestService, urls, $http, Upload) {
         return $http
             .post(urls.BASE_API + 'beat/delete', item)
             .then(function(response) {
-                return response.data;
+                return $rootScope.decrypt(response.data);
             });
     };
 
@@ -27,7 +27,7 @@ app.factory('Beat', function(RestService, urls, $http, Upload) {
         return $http
             .post(urls.BASE_API + 'beat/feature', item)
             .then(function(response) {
-                return response.data;
+                return $rootScope.decrypt(response.data);
             });
     };
 
@@ -35,7 +35,7 @@ app.factory('Beat', function(RestService, urls, $http, Upload) {
         return $http
             .post(urls.BASE_API + 'beat/set-public', item)
             .then(function(response) {
-                return response.data;
+                return $rootScope.decrypt(response.data);
             });
     };
 

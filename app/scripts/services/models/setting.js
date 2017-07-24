@@ -1,17 +1,17 @@
-app.factory('Setting', function (RestService, urls, $http) {
+app.factory('Setting', function (RestService, urls, $http, $rootScope) {
   var rest = {};
 
   rest.get = function () {
     return $http.get(urls.BASE_API + 'setting/')
       .then(function (response) {
-        return response.data
+        return $rootScope.decrypt(response.data);
       });
   };
 
   rest.post = function (item) {
     return $http.post(urls.BASE_API + 'setting/', item)
       .then(function (response) {
-        return response.data
+        return $rootScope.decrypt(response.data);
       });
   };
 

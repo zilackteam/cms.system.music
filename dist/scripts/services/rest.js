@@ -33,7 +33,7 @@
  </pre>
  */
 
-app.factory('RestService', function($http, urls) {
+app.factory('RestService', function($http, urls, $rootScope) {
     var _baseUrl = urls.BASE_API;
 
     var RestService = function(api) {
@@ -58,7 +58,7 @@ app.factory('RestService', function($http, urls) {
             }*/
         )
             .then(function(response) {
-                return response.data;
+                return $rootScope.decrypt(response.data);
             });
     }
 
@@ -74,7 +74,7 @@ app.factory('RestService', function($http, urls) {
         return $http
             .get(_baseUrl + this.apiPath + id)
             .then(function(response) {
-                return response.data;
+                return $rootScope.decrypt(response.data);
             });
     }
 
@@ -94,7 +94,7 @@ app.factory('RestService', function($http, urls) {
                 params: params
             })
             .then(function(response) {
-                return response.data;
+                return $rootScope.decrypt(response.data);
             })
     }
 
@@ -116,7 +116,7 @@ app.factory('RestService', function($http, urls) {
             }*/
             )
             .then(function(response) {
-                return response.data;
+                return $rootScope.decrypt(response.data);
             });
     }
 
@@ -132,7 +132,7 @@ app.factory('RestService', function($http, urls) {
         return $http
             .delete(_baseUrl + this.apiPath + id)
             .then(function(response) {
-                return response.data;
+                return $rootScope.decrypt(response.data);
             })
     }
 
