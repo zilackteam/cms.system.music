@@ -224,7 +224,7 @@ app.run(function ($rootScope, $state, store, jwtHelper, User, froalaConfig, App)
       }
     }
     var password = 'llRYAcSucCE6ZWRNd0gNoKdGsMw8W6Gv';
-    var decrypted = JSON.parse(CryptoJS.AES.decrypt(response.data, "llRYAcSucCE6ZWRNd0gNoKdGsMw8W6Gv", {format: CryptoJSAesJson}).toString(CryptoJS.enc.Utf8));;
+    var decrypted = JSON.parse(CryptoJS.AES.decrypt(JSON.stringify(response.data), password, {format: CryptoJSAesJson}).toString(CryptoJS.enc.Utf8));
 
     var result = {
       'error' : response.error,
