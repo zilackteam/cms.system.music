@@ -46,6 +46,10 @@ app.controller('SingerVersionCtrl', function($rootScope, $scope, $window, $timeo
                 alert('Version updated successfully!');
                 $scope.errorMsgs = [];
 
+                Version.rest.listing({content_id: $scope.contentId})
+                .then(function(response) {
+                    $scope.versions = response.data;
+                });
             }, function(responseError) {
                 $scope.errorMsgs = responseError.data.error;
             })
@@ -56,7 +60,11 @@ app.controller('SingerVersionCtrl', function($rootScope, $scope, $window, $timeo
         	Version.rest.add(version).then(function(response) {
                 alert('New version added successfully!');
                 $scope.errorMsgs = [];
-                $scope.versions.push(response.data);
+
+                Version.rest.listing({content_id: $scope.contentId})
+                .then(function(response) {
+                    $scope.versions = response.data;
+                });
 
                 $scope.version = {};
                 $mdDialog.hide();
