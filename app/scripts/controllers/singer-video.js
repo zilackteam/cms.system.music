@@ -9,7 +9,7 @@ app.controller('SingerVideoCtrl', function($rootScope, $scope, $window, $timeout
 
     $scope.contentId = $stateParams.contentId;
     
-    $scope.categories = {1: 'MV Official', 2: 'Nhạc Ảnh', 3: 'Sự Kiện', 4: 'Fan'};
+    $scope.categories = {5: 'MV Official', 6: 'Nhạc Ảnh', 7: 'Sự Kiện', 8: 'Fan'};
 
     $scope.videos = [];
     Video.rest.getList({content_id: $scope.contentId}).then(function(response) {
