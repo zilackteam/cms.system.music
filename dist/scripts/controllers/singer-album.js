@@ -53,6 +53,7 @@ app.controller('SingerAlbumCtrl', function($rootScope, $scope, $window, $timeout
                 is_public: $scope.album.is_public,
                 keywords: $scope.album.keywords,
                 performer: $scope.album.performer,
+                price: $scope.album.price,
             }).then(function(response) {
                 alert('Album updated successfully!');
                 $scope.errorMsgs = [];
@@ -72,6 +73,7 @@ app.controller('SingerAlbumCtrl', function($rootScope, $scope, $window, $timeout
                 is_public: $scope.album.is_public,
                 keywords: $scope.album.keywords,
                 performer: $scope.album.performer,
+                price: $scope.album.price,
             }).then(function(response) {
                 //Inform user + clear error
                 alert('Album created successfully!');
