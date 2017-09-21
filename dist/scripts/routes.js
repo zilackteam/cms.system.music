@@ -51,6 +51,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvi
       templateUrl: 'views/pages/setting.html',
       controller: 'SettingCtrl'
     })
+    .state('category', {
+      url: '/category',
+      templateUrl: 'views/pages/category.html',
+      controller: 'CategoryCtrl'
+    })
     .// Users
     state('user', {
       url: '/user',

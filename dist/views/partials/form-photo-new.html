@@ -40,10 +40,9 @@
                 <md-input-container flex="50">
                     <label>Category</label>
                     <md-select ng-model="photo.category">
-			            <md-option value="1">Ảnh Tư Liệu</md-option>
-			            <md-option value="2">Ảnh Sự Kiện</md-option>
-			            <md-option value="3">Ảnh Nghệ Thuật</md-option>
-			            <md-option value="4">Ảnh Fan</md-option>
+                        <md-option ng-repeat="category in categories" value="{{category.id}}">
+                            {{category.name}}
+                        </md-option>
 			        </md-select>
                 </md-input-container>
                 

@@ -34,10 +34,9 @@
                 <md-input-container flex="50">
 			    	<label>Category</label>
 			    	<md-select ng-model="video.category">
-			            <md-option value="5">MV Official</md-option>
-			            <md-option value="6">Nhạc Ảnh</md-option>
-			            <md-option value="7">Sự Kiện</md-option>
-			            <md-option value="8">Fan</md-option>
+                        <md-option ng-repeat="category in categories" value="{{category.id}}">
+                            {{category.name}}
+                        </md-option>
 			        </md-select>
 			    </md-input-container>
 			    

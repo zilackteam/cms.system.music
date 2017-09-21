@@ -1,5 +1,5 @@
 app.controller('SingerVideoCtrl', function($rootScope, $scope, $window, $timeout, $mdDialog, $location, $state, $stateParams,
-                                           store, jwtHelper, User, Video, Song, Album) {
+                                           store, jwtHelper, User, Video, Category) {
 
     $scope.query = {
         order: '',
@@ -8,8 +8,16 @@ app.controller('SingerVideoCtrl', function($rootScope, $scope, $window, $timeout
     };
 
     $scope.contentId = $stateParams.contentId;
-    
-    $scope.categories = {5: 'MV Official', 6: 'Nhạc Ảnh', 7: 'Sự Kiện', 8: 'Fan'};
+
+    $scope.categories = [];
+    $scope.categoriesArr = [];
+    Category.rest.getList({type: 2}).then(function(response) {
+        $scope.categories = response.data;
+
+        angular.forEach($scope.categories, function(category) {
+            $scope.categoriesArr[category.id] = category.name;
+        });
+    });
 
     $scope.videos = [];
     Video.rest.getList({content_id: $scope.contentId}).then(function(response) {

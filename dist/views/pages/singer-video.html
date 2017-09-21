@@ -25,7 +25,7 @@
                 <td md-cell ng-click="openDialog($event, video)">{{ video.name }}</td>
                 <td md-cell>{{ video.video_url }}</td>
                 <td md-cell>
-                	{{ categories[video.category] }}
+                	{{ categoriesArr[video.category] }}
                 </td>
                 <td md-cell>
                 	<input type="checkbox" ng-model="video.is_feature" ng-true-value="1" ng-false-value="0" ng-checked="video.is_feature == 1" 

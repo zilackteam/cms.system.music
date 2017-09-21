@@ -1,10 +1,15 @@
-app.controller('SingerPhotoCtrl', function($rootScope, $scope, $window, $timeout, $mdDialog, $location, $state, $stateParams, store, jwtHelper, User, Photo) {
+app.controller('SingerPhotoCtrl', function($rootScope, $scope, $window, $timeout, $mdDialog, $location, $state, $stateParams, store, jwtHelper, User, Photo, Category) {
     $rootScope.currentPage = {
         class: 'page-singer-photo',
         name: 'Singer Photo ' + $stateParams.contentId
     };
 
     $scope.contentId = $stateParams.contentId;
+
+    $scope.categories = [];
+    Category.rest.getList({type: 1}).then(function(response) {
+        $scope.categories = response.data;
+    });
 
     $scope.photos = [];
     Photo.rest.getList({content_id: $scope.contentId})

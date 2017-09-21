@@ -1,0 +1,38 @@
+<md-dialog class="form-dialog form-category">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>{{ !category.id ? "New category" : "Update category"}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="closeDialog()">
+                <md-icon aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            <form action="createCategory" layout="column" layout-gt-xs="row" layout-wrap>
+
+                <error-block flex="100" messages="errorMsgs"></error-block>
+
+                <md-input-container flex="100">
+                    <label>Category Name</label>
+                    <input type="text" ng-model="category.name"/>
+                </md-input-container>
+
+                <md-input-container flex="100">
+                    <label>Category Type</label>
+                    <md-select ng-model="category.type">
+                        <md-option value="1">Photo</md-option>
+                        <md-option value="2">Video</md-option>
+                    </md-select>
+                </md-input-container>
+            </form>
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button class="md-raised md-warn" ng-click="deleteCategory(category)" ng-show="category.id">Delete</md-button>
+        <span flex></span>
+        <md-button class="md-raised md-primary" ng-click="submitCategory(category.id)">Submit</md-button>
+    </md-dialog-actions>
+</md-dialog>

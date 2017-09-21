@@ -1,0 +1,50 @@
+<p>
+    <md-button class="md-raised md-primary" ng-click="openDialog($event)">
+        New Category
+    </md-button>
+</p>
+<br/>
+<p class="align-center" ng-hide="categories.length">No category</p>
+
+<md-table-container ng-show="categories.length">
+    <table md-table>
+        <thead md-head md-order="query.order">
+        <tr md-row>
+            <th md-column md-order-by="name">Name</th>
+            <th md-column md-order-by="type">Type</th>
+            <th md-column md-order-by="is_feature">Feature</th>
+            <th md-column md-order-by="created_at">Created</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody md-body>
+        <tr md-row ng-repeat="category in result = categories | filter:search:name | orderBy: query.order | limitTo: query.limit : (query.page - 1) * query.limit" class="clickable"
+        >
+            <td md-cell ng-click="openDialog($event, category)">{{ category.name }}</td>
+            <td md-cell>
+                {{ types[category.type] }}
+            </td>
+            <td md-cell>
+                <input type="checkbox" ng-model="category.is_feature" ng-true-value="1" ng-false-value="0" ng-checked="category.is_feature == 1"
+                       aria-label="checkbox" ng-click="featureCategory(category)">
+            </td>
+            <td md-cell>{{ category.created_at }}</td>
+            <td md-cell>
+                <md-button
+                        class="md-icon-button"
+                        ng-click="openDialog($event, category)"
+                        stop-event="click"
+                >
+                    <md-icon>edit</md-icon>
+                </md-button>
+
+                <md-button class="md-icon-button" ng-click="deleteCategory(category)">
+                    <md-icon>delete</md-icon>
+                </md-button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</md-table-container>
+
+<md-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{result.length}}" ng-show="categories.length"></md-table-pagination>
