@@ -114,8 +114,6 @@ app.controller('SingerAlbumCtrl', function($rootScope, $scope, $window, $timeout
         } else {
             alert('You cant delete album that have songs');
         }
-
-
     }
     
     $scope.featureAlbum = function(album) {
@@ -126,6 +124,19 @@ app.controller('SingerAlbumCtrl', function($rootScope, $scope, $window, $timeout
             $scope.errorMsgs = responseError.data.error;
         },function(evt) {
         	
+        })
+    }
+
+    $scope.removeSong = function(albumId, song) {
+        Album.rest.removeSong({
+            id: albumId,
+            song_id: song.id
+        }).then(function(response) {
+            alert('Song deleted successfully');
+            var index = $scope.songs.indexOf(song);
+            $scope.songs.splice(index, 1);
+        }, function(responseError) {
+            alert('Unable to delete album');
         })
     }
 });
