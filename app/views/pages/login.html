@@ -1,16 +1,16 @@
 <md-content class="cms-login">
-    <p class="form-intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ad adipisci alias aspernatur</p>
+    <h3>Login to CMS</h3>
     <form name="Login">
         <div layout="column">
             <ul class="error-msg" ng-show="errorMsgs.length">
                 <li ng-repeat="error in errorMsgs">{{error}}</li>
             </ul>
             <md-input-container>
-                <label>Email</label>
+                <label class="md-no-float md-container-ignore">Email</label>
                 <input type="text" ng-model="user.sec_name">
             </md-input-container>
             <md-input-container>
-                <label>Password</label>
+                <label class="md-no-float md-container-ignore">Password</label>
                 <input type="password" ng-model="user.sec_pass">
             </md-input-container>
         </div>

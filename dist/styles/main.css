@@ -245,14 +245,68 @@ md-sidenav h2.menu-heading {
 }
 
 .page-public .cms-login {
-  margin: 0 auto;
-  width: 75%;
+  margin: 50px auto 0;
+  max-width: 360px;
+  background-color: #f7f7f7;
+  box-shadow: 0 0 3px 3px #888;
+  border-radius: 2px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.page-public .cms-login input {
+  position: relative;
+  font-size: 16px;
+  height: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.page-public .cms-login h3 {
+  margin-bottom: 20px;
+}
+
+.page-public .cms-login label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.page-public .cms-login md-input-container {
+  margin: 5px 0;
+}
+
+.page-public .cms-login md-input-container .md-errors-spacer {
+  display: none;
+}
+
+.page-public .cms-login button {
+  color: #fff !important;
+  background-color: #ac2925  !important;
+  border-color: #761c19  !important;
+  margin-top: 30px;
 }
 
 @media screen and (max-width: 600px) {
   .page-public .cms-login {
     width: 100%;
   }
+}
+
+.page-login md-toolbar {
+  display: none !important;
 }
 
 /*# sourceMappingURL=main.css.map */

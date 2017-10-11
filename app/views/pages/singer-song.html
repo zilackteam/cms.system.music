@@ -31,7 +31,8 @@
             <tr md-row>
                 <th></th>
                 <th md-column md-order-by="name">Name</th>
-                <th md-column md-order-by="album_name">Album</th>
+                <!--<th md-column md-order-by="album_name">Album</th>-->
+                <th md-column md-order-by="price">Price</th>
                 <th md-column md-order-by="">Format</th>
                 <th md-column md-order-by="thumb_url">Thumbnail</th>
                 <th md-column md-order-by="is_feature">Feature</th>
@@ -51,7 +52,8 @@
                         ng-click="toggleSelection(song.id)"
                 ></td>
                 <td md-cell ng-click="changeState('song-update', {contentId: contentId, songId: song.id})">{{ song.name }}</td>
-                <td md-cell>{{ song.album_name }}</td>
+                <!--<td md-cell>{{ song.album_name }}</td>-->
+                <td md-cell>{{ song.price | number }}</td>
                 <td md-cell>{{ song.format_available }}</td>
                 <td md-cell>
                 	<md-icon ng-show="song.thumb_url">done</md-icon>
